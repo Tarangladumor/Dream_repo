@@ -2,9 +2,9 @@
 import React from 'react'
 import { FaCheck } from "react-icons/fa"
 import { useSelector } from "react-redux"
-import ProductInformationForm from "./Product Information Form/ProductInfo"
-import ProductImages from "./Product Images Section/ProductImages"
-import ProductPreview from "./Product Preview Section"
+import ProductInformationForm from "./Product_Information_Form/ProductInfo"
+import ProductImages from "./Product_Images_Section/ProductImages"
+import ProductPreview from "./Product_preview/ProductPreview"
 
 
 export const RenderSteps = () => {

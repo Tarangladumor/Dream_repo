@@ -1,5 +1,5 @@
 import {RenderSteps} from "./RenderSteps"
-// import productInfoTip from '../../Assets/Product Information Tips.png' 
+import TIP from '../../../assets/tip_image.png' 
 
 export default function AddProduct() {
   return (
@@ -21,7 +21,7 @@ export default function AddProduct() {
         {/* Product Info Tips */}
         <div className="sticky top-10 hidden max-w-[350px] flex-1 rounded-md border-[1px] border-richblack-700 shadow-2xl p-6 mr-10 xl:block">
           <p className="mb-8 text-lg flex items-center text-richblack-5">
-          <img src={productInfoTip} alt="" height={49} width={47} />
+          <img src={TIP} alt="" height={49} width={47} />
              Image upload Tips</p>
           <ul className="ml-5 list-item list-disc space-y-4 text-xs text-richblack-5">
             <li>Set the Course Price option or make it free.</li>

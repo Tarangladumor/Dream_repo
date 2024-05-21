@@ -8,6 +8,9 @@ import VerifyEmail from './components/pages/VerifyEmail';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Dashboard from './components/pages/Dashboard';
 import MyProfile from './components/Dashboard/MyProfile';
+import Footer from './components/common/Footer'
+import Settings from './components/Dashboard/Settings'
+import AddProduct from './components/Dashboard/Add Product/index'
 
 function App() {
   return (
@@ -29,9 +32,15 @@ function App() {
         <Route element={<Dashboard/>}>
 
           <Route path='/dashboard/my-profile' element={<MyProfile/>}/>
+
+          <Route path='/dashboard/Settings' element={<Settings/>}/>
+
+          <Route path='/dashboard/add-product' element={<AddProduct/>}/>
         </Route>
 
       </Routes>
+
+      <Footer/>
 
     </div>
   );
