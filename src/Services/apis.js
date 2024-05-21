@@ -7,3 +7,7 @@ export const authendpoints = {
     RESETPASSTOKEN_API: BASE_URL + "/auth/resetpasswordtoken",
     RESETPASSWORD_API: BASE_URL + "/auth/resetpassword"
 }
+
+export const contactus = {
+    CONTACTUS_API: BASE_URL + "/auth/contactus"
+}
