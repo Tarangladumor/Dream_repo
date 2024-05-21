@@ -10,12 +10,12 @@ const Navbar = () => {
 
   const [loading,setLoading] = useState(false);
   return (
-    <div className=' bg-[#fff] p-5 border-2 '>
+    <div className=' bg-[#fff] py-4 border-2 '>
 
       <div className=' w-10/12 mx-auto flex justify-between items-center '>
 
         <Link to="/">
-          <img src={LOGO} loading='lazy' height={50} width={70}/>
+          <img src={LOGO} loading='lazy' height={45} width={45}/>
         </Link>
 
         <nav className='ml-10'>

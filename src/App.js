@@ -8,6 +8,7 @@ import VerifyEmail from './components/pages/VerifyEmail';
 import ResetPassword from './components/pages/ResetPassword';
 import Dashboard from './components/pages/Dashboard';
 import MyProfile from './components/Dashboard/MyProfile';
+import Settings from './components/Dashboard/Settings';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route element={<Dashboard/>}>
 
           <Route path='/dashboard/my-profile' element={<MyProfile/>}/>
+
+          <Route path='/dashboard/Settings' element={<Settings/>}/>
         </Route>
 
       </Routes>
