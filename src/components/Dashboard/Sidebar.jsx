@@ -5,7 +5,7 @@ import IndividualSidebarLinks from './IndividualSidebarLinks'
 
 const Sidebar = () => {
     return (
-        <div className='h-screen bg-[#292D2A] min-w-[calc(100vh-28rem)] text-white flex flex-col  gap-5 pt-10 '>
+        <div className='h-screen bg-[#292D2A] min-w-[calc(100vh-30rem)] text-white flex flex-col  gap-5 pt-10 '>
 
             <div className='flex flex-col gap-5'>
                 {
@@ -15,7 +15,7 @@ const Sidebar = () => {
                 }
             </div>
 
-            <hr className='text-[#fff] w-[90%] mx-auto mb-16 mt-16'/>
+            <hr className='text-[#fff] w-[90%] mx-auto mb-12 mt-16'/>
 
             <div className='flex flex-col gap-8'>
                 {
