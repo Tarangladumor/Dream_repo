@@ -2,9 +2,11 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import REWARD from '../../assets/Reward_image.png'
+import { useSelector } from 'react-redux';
 
 const MyProfile = () => {
 
+  const {user} = useSelector((state) => state.profile)
 
   const histroryCradData = [
     {
@@ -39,15 +41,19 @@ const MyProfile = () => {
           <div className='flex justify-between items-center  mx-auto lg:max-w-[90%]'>
 
             <div className='flex gap-x-10'>
-              <div className=' h-[100px] w-[100px] rounded-full bg-green-700'>
-
+              <div className=' h-[100px] w-[100px] rounded-full'>
+              <img
+            src={user?.image}
+            alt={`profile-${user?.firstName}`}
+            className="aspect-square w-[106px] rounded-full object-cover"
+          />
               </div>
 
               <div className='flex flex-col gap-1'>
 
-                <p className=' font-roboto font-medium text-[20px]'>John Doe</p>
+                <p className=' font-roboto font-medium text-[20px]'>{user?.firstName + " " + user?.lastName}</p>
 
-                <p className=' font-roboto font-medium opacity-55 text-[20px]'>abc1234@gmail.com</p>
+                <p className=' font-roboto font-medium opacity-55 text-[20px]'>{user?.email}</p>
 
                 <Link className="underline text-[#A27647] text-[16px] font-roboto ">Edit profile pic</Link>
               </div>
@@ -99,33 +105,33 @@ const MyProfile = () => {
 
               <div>
                 <p className=' font-medium text-[22px] font-roboto'>Name</p>
-                <p className=' font-medium text-xl font-roboto opacity-55'>John Doe</p>
+                <p className=' font-medium text-xl font-roboto opacity-55'>{user?.firstName}</p>
               </div>
 
               <div>
-                <p className=' font-medium text-[22px] font-roboto'>Email</p>
-                <p className=' font-medium text-xl font-roboto opacity-55'>abc1234@gmail.com</p>
-              </div>
-            </div>
-
-            <div className=' flex flex-col gap-10'>
-
-              <div>
-                <p className=' font-medium text-[22px] font-roboto'>Address</p>
-                <p className=' font-medium text-xl font-roboto opacity-55'>Waghodiya, Vadodara</p>
-              </div>
-
-              <div>
-                <p className=' font-medium text-[22px] font-roboto'>State/Country</p>
-                <p className=' font-medium text-xl font-roboto opacity-55'>Gujarat/India</p>
+                <p className=' font-medium text-[22px] font-roboto'>Gender</p>
+                <p className=' font-medium text-xl font-roboto opacity-55'>{user?.profile?.gender}</p>
               </div>
             </div>
 
             <div className=' flex flex-col gap-10'>
 
               <div>
-                <p className=' font-medium text-[22px] font-roboto'>Account Type</p>
-                <p className=' font-medium text-xl font-roboto opacity-55'>Customer</p>
+                <p className=' font-medium text-[22px] font-roboto'>Last Name</p>
+                <p className=' font-medium text-xl font-roboto opacity-55'>{user?.lastName}</p>
+              </div>
+
+              <div>
+                <p className=' font-medium text-[22px] font-roboto'>Contact Number</p>
+                <p className=' font-medium text-xl font-roboto opacity-55'>{user?.profile?.contactNumber}</p>
+              </div>
+            </div>
+
+            <div className=' flex flex-col gap-10'>
+
+              <div>
+                <p className=' font-medium text-[22px] font-roboto'>Date Of Birth</p>
+                <p className=' font-medium text-xl font-roboto opacity-55'>{user?.profile?.dateOfBirth}</p>
               </div>
             </div>
           </div>
