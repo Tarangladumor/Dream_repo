@@ -1,7 +1,10 @@
 import React from 'react'
 import BIN from "../../assets/bin_image.png"
+import { useSelector } from 'react-redux'
 
 const Section1 = () => {
+
+    const {token} = useSelector((state) => state.auth)
     return (
         <div>
 
@@ -18,7 +21,7 @@ const Section1 = () => {
 
                         <div className=' mt-16'>
                             <button className=' bg-[#F19A3E] text-white py-4 px-12 rounded-3xl text-[28px] font-medium hover:scale-105 transition-all duration-200 font-inter'>
-                                Explore More
+                                
                             </button>
                         </div>
                     </div>

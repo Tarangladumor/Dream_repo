@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import LOGO from '../../assets/LOGO.png'
 import { useSelector } from 'react-redux'
+import ProfileDropdown from '../Auth/ProfileDropdown'
 
 const Navbar = () => {
 
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
+
+  const location = useLocation();
 
   const [loading,setLoading] = useState(false);
   return (
@@ -23,20 +26,24 @@ const Navbar = () => {
 
             <li><Link to="/">Home</Link></li>
 
-            <li><Link to="/about">About</Link></li>
+            {token === null ? (<li><Link to="/about">About</Link></li>) : (user && user.accountType !== "Vendor") ? (<li><Link to="/allvendors">Vendors</Link></li>) : (<li><Link to="/allproducts">All Products</Link></li>)}
 
-            <li><Link to="/contact">Contact</Link></li>
+            {/* <li><Link to="/about">About</Link></li> */}
+
+            {/* <li><Link to="/contact">Contact</Link></li> */}
+
+            {token === null ? (<li><Link to="/about">Contact</Link></li>) : (user && user.accountType !== "Vendor") ? (<li><Link to="/addproduct">Add Product</Link></li>) : (<li><Link to="/allproducts">Interested Products</Link></li>)}
           </ul>
         </nav>
 
         <div className='flex gap-x-5'>
-          {
+          {/* {
             user && user.accountType != "Vendor" && (
               <Link to="/dashboard/my-products" className='relative'>
                 hmmmmmm
               </Link>
             )
-          }
+          } */}
           {
             token === null && (
               <Link to="/signup">
@@ -44,7 +51,6 @@ const Navbar = () => {
               </Link>
             )
           }
-
 {
             token === null && (
               <Link to="/login">
@@ -52,6 +58,7 @@ const Navbar = () => {
               </Link>
             )
           }
+          {token !== null && <ProfileDropdown/>}
         </div>
       </div>
     </div>

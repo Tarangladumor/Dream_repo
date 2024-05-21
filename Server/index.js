@@ -9,6 +9,7 @@ import userRouter from "./routes/user.js"
 import adminRouter from "./routes/admin.js"
 import vendorRouter from "./routes/vendor.js"
 import individualRouter from "./routes/individual.js"
+import cors from "cors"
 
 const app = express();
 
@@ -25,12 +26,19 @@ app.use(fileUpload({
     tempFileDir:"/tmp"
 }))
 
-// app.use(
-//     cors({
-//         origin:"http://localhost:3000",
-//         credentials:true,
-//     })
-// )
+app.use(
+    cors({
+        origin:"http://localhost:3000",
+        credentials:true,
+    })
+)
+
+app.use(
+	fileUpload({
+		useTempFiles:true,
+		tempFileDir:"/tmp",
+	})
+)
 
 cloudinaryConnect();
 
