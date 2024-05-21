@@ -2,10 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Index from './components/Homepage/Index';
 import Signup from './components/pages/Signup';
-import Navbar from './components/common components/Navbar';
+import Navbar from './components/common/Navbar';
 import Login from './components/pages/Login';
 import VerifyEmail from './components/pages/VerifyEmail';
-import ResetPassword from './components/pages/ResetPassword';
+import ForgotPassword from './components/pages/ForgotPassword';
 import Dashboard from './components/pages/Dashboard';
 import MyProfile from './components/Dashboard/MyProfile';
 
@@ -24,7 +24,7 @@ function App() {
 
         <Route path='verify-email' element={<VerifyEmail/>}/>
 
-        <Route path="reset-password" element={<ResetPassword/>}/>
+        <Route path="forgot-password" element={<ForgotPassword/>}/>
 
         <Route element={<Dashboard/>}>
 

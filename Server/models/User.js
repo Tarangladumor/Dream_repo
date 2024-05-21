@@ -14,14 +14,13 @@ const schema = new mongoose.Schema({
         required: true,
         unique: true,
       },
-      password: {
+      city:{
         required: true,
         type: String,
       },
-      accountType: {
+      pincode: {
         required: true,
-        type: String,
-        enum: ["Individual", "Vendor","Admin"],
+        type: Number,
       },
       state: {
         type: String,
@@ -31,13 +30,14 @@ const schema = new mongoose.Schema({
         required: true,
         type: String,
       },
-      city:{
+      password: {
         required: true,
         type: String,
       },
-      pincode: {
-        required: true,
-        type: Number,
+      accountType: {
+        // required: true,
+        type: String,
+        enum: ["Individual", "Vendor","Admin"],
       },
       image: {
         type: String

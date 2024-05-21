@@ -69,14 +69,14 @@ export const signup = async (req, res) => {
       firstName,
       lastName,
       email,
-      password,
-      confirmPassword,
-      address,
-      state,
+      accountType,
       city,
       pincode,
+      state,
+      address,
+      password,
+      confirmPassword,
       otp,
-      accountType,
     } = req.body;
 
     if (
@@ -89,11 +89,13 @@ export const signup = async (req, res) => {
       !otp ||
       !state ||
       !city ||
-      !pincode ||
-      !accountType
+      !pincode || !accountType
     ) {
       return respond(res, "All fields are required while signup", 400, false);
     }
+
+    console.log("password:",password )
+    console.log("confirm:",confirmPassword)
 
     if (password !== confirmPassword) {
       return respond(res, "Passwords do not Match", 400, false);
@@ -137,21 +139,21 @@ export const signup = async (req, res) => {
     
 
     const user = await User.create({
-      firstName,
-      lastName,
-      state,
-      email,
-      password: hashPassword,
+      firstName:firstName,
+      lastName:lastName,
+      email:email,
       accountType,
-      address,
-      city,
-      pincode,
+      city:city,
+      pincode:pincode,
+      state:state,
+      address:address,
+      password:hashPassword,
       image: `https://api.dicebear.com/7.x/initials/svg?seed=${firstName} ${lastName}`,
       profile: profile,
       vendorDetails: accountType === "Vendor" ? vendorDetails._id : undefined,
     });
     
-    return respond(res, "User is registerd Successfully", 200, true);
+    return respond(res, "User is registerd Successfully", 200, true,user);
   } catch (error) {
     console.log(error);
     return respond(res, "Something went wrong while singup", 500, false);

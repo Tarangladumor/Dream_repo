@@ -1,6 +1,6 @@
 import React from 'react'
 import SIGNUP from '../../assets/signup_image.png'
-import SIgnup_Form from '../common components/SIgnup_Form'
+import SIgnup_Form from '../Auth/SIgnup_Form'
 
 const Signup = () => {
     return (
