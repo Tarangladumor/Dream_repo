@@ -6,7 +6,7 @@ dotenv.config()
 
 export const auth = async(req,res,next) => {
     try{
-        const token = req.cookies.token || req.body.token || req.header("authorization").replace("Bearer ","");
+        const token = req.cookies.token || req.body.token || req.header("Authorization").replace("Bearer ","");
 
         if(!token) {
             return respond(res,"token is missing",400,false)

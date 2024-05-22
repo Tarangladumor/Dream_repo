@@ -43,6 +43,7 @@ export const updateProfile = async (req,res) => {
         const userId = req.user.id;
 
         const userDetails = await User.findById(userId)
+        console.log(userDetails)
         const profileDetails = await Profile.findById(userDetails.profile);
 
         const user = await User.findByIdAndUpdate(userId,{
@@ -76,7 +77,7 @@ export const updateDisplayPicture = async(req,res) => {
         _id: userId
       },{image: image.secure_url},{new:true})
   
-      return respond(res,"Image Update successfully",200,true)
+      return respond(res,"Image Update successfully",200,true,updateProfileImage)
     } catch(errro) {
       console.log(errro);
       return respond(res,"Something went wrong while updating the display image",500,false)

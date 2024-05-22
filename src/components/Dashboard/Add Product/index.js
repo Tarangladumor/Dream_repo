@@ -4,13 +4,16 @@ import TIP from '../../../assets/tip_image.png'
 export default function AddProduct() {
   return (
     <>
+       <p className="p-3 text-2xl">Home/Dashboard/Add Products</p>
       <div className="flex w-full items-start gap-x-8">
+         
+      
 
         <div className="mt-14 flex flex-1 flex-col">
 
-          <p className="ml-24 p-3 text-[16px]">Home/Dashboard/Add Products</p>
           
-          <h1 className="ml-24 mb-10 p-3 text-3xl font-medium">
+          
+          <h1 className="mb-10 p-3 text-3xl font-medium">
             Add Product Details
           </h1>
           <div className="flex-1">

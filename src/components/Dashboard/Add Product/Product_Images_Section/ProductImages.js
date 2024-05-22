@@ -34,7 +34,7 @@ const ProductImages = () => {
   return (
     <div>
         
-        <form className="ml-24 space-y-8 rounded-md border-[1px] border-richblack-700 p-6">
+        <form className="space-y-8 rounded-md border-[2px] border-[#499F682B] p-6">
             {/* Product Image */}
         <div className='flex flex-col'>
 
