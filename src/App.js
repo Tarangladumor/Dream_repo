@@ -8,13 +8,10 @@ import VerifyEmail from './components/pages/VerifyEmail';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Dashboard from './components/pages/Dashboard';
 import MyProfile from './components/Dashboard/MyProfile';
-<<<<<<< HEAD
 import Footer from './components/common/Footer'
 import Settings from './components/Dashboard/Settings'
 import AddProduct from './components/Dashboard/Add Product/index'
-=======
 import { useDispatch, useSelector } from 'react-redux';
->>>>>>> de7f4a7c2e65e41845c4f9fa16ab442b505a79fe
 
 function App() {
 
@@ -49,7 +46,6 @@ function App() {
 
       </Routes>
 
-      <Footer/>
 
     </div>
   );

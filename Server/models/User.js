@@ -58,6 +58,7 @@ const schema = new mongoose.Schema({
       profile: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Profile",
+        required:true
       },
       vendorDetails: {
         type: mongoose.Schema.Types.ObjectId,

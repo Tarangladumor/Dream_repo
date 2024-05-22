@@ -3,6 +3,7 @@ import Section1 from './Section1'
 import Why_sell from './Why_sell'
 import JoinUs from './JoinUs'
 import WhyChooseUs from './WhyChooseUs'
+import Footer from '../common/Footer'
 
 const Index = () => {
   return (
@@ -14,6 +15,8 @@ const Index = () => {
       <JoinUs/>
 
       <WhyChooseUs/>
+
+      <Footer/>
     </div>
   )
 }

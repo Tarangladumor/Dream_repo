@@ -168,7 +168,14 @@ export const login = async (req, res) => {
       return respond(res, "All fields are required", 403, false);
     }
 
-    const user = await User.findOne({ email });
+    // const user = await User.findOne({ email }).populate({
+    //   path:"profile",
+    //   populate: {
+    //     path: 'gender', // This is only if gender is a reference field
+    //   }
+    // }).exec();
+
+    const user = await User.findOne({ email }).populate("profile");
 
     if (!user) {
       return respond(

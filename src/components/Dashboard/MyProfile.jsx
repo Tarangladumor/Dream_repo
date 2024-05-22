@@ -8,6 +8,8 @@ const MyProfile = () => {
 
   const {user} = useSelector((state) => state.profile)
 
+  console.log("data",user)
+
   const histroryCradData = [
     {
       name: "Redmi Note 9 pro",
@@ -55,7 +57,7 @@ const MyProfile = () => {
 
                 <p className=' font-roboto font-medium opacity-55 text-[20px]'>{user?.email}</p>
 
-                <Link className="underline text-[#A27647] text-[16px] font-roboto ">Edit profile pic</Link>
+                <Link to="/dashboard/settings" className="underline text-[#A27647] text-[16px] font-roboto ">Edit profile pic</Link>
               </div>
 
 
@@ -93,11 +95,9 @@ const MyProfile = () => {
 
           <p className=' text-xl font-medium font-roboto'>Personal details</p>
 
-          <Link className='underline text-[#A27647] text-xl font-roboto mr-2'>Edit details</Link>
+          <Link to="/dashboard/settings" className='underline text-[#A27647] text-xl font-roboto mr-2'>Edit details</Link>
         </div>
-
-
-
+        
         <div className='bg-[#499F68] bg-opacity-[17%] rounded-2xl py-5'>
 
           <div className='flex justify-between mx-auto lg:max-w-[90%]'>

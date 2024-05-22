@@ -1,9 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { updateProfile } from '../../Services/Operation/settingsAPI';
 
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
 
 const EditProfile = () => {
+
+    const {user} = useSelector((state) => state.profile)
+    const {token} = useSelector((state) => state.auth)
+    const navigate = useNavigate()
+    const dispatch = useDispatch() 
 
     const {
         register,
@@ -11,8 +19,13 @@ const EditProfile = () => {
         formState: { errors },
     } = useForm();
 
-    const submitProfileform = () => {
-
+    const submitProfileform = async (data) => {
+        try{
+            dispatch(updateProfile(token,data))
+          }
+          catch(error) {
+            console.log("ERROR MESSAGE - ", error.message)
+          }
     }
 
     return (
@@ -31,7 +44,7 @@ const EditProfile = () => {
                         placeholder='Enter first name'
                         className='input_feild'
                         {...register("firstName", { required: true })}
-                        defaultValue="firstname" />
+                        defaultValue={user?.firstName} />
                     {
                         errors.firstName && (
                             <span className='-mt-1 text-[12px] text-yellow-100'>
@@ -51,7 +64,7 @@ const EditProfile = () => {
                         placeholder='Enter last name'
                         className='input_feild'
                         {...register("lastName", { required: true })}
-                        defaultValue="lastName" />
+                        defaultValue={user?.lastName} />
                     {
                         errors.lastName && (
                             <span className='-mt-1 text-[12px] text-yellow-100'>
@@ -82,6 +95,7 @@ const EditProfile = () => {
                                 message: "Date of birth cannot be in the future"
                             }
                         })}
+                        defaultValue={user?.profile?.dateOfBirth}
                     />
                     {
                         errors.dateOfBirth && (
@@ -101,7 +115,7 @@ const EditProfile = () => {
                         id='gender'
                         className='input_feild'
                         {...register("gender", { required: true })}
-                        defaultValue="gender">
+                        defaultValue={user?.additionalDetails?.gender}>
                         {
                             genders.map((ele, i) => {
                                 return (
@@ -114,7 +128,7 @@ const EditProfile = () => {
                     </select>{
                         errors.gender && (
                             <span className='-mt-1 text-[12px] text-yellow-100'>
-                                Please enter your Date of Birth
+                                Please enter your gender
                             </span>
                         )
                     }
@@ -132,7 +146,19 @@ const EditProfile = () => {
                         id='lastName'
                         placeholder='Enter contact number'
                         className='input_feild'
-                        {...register("contactNumber", { required: true })}
+                        {...register("contactNumber", {
+                  required: {
+                    value: true,
+                    message: "Please enter your Contact Number."
+                  },
+                  maxLength: {
+                    value: 12 , message: "Invalid Contact Number"},
+                  minLength: {
+                    value: 10 , message: "Invalid Contact Number"
+                  },
+                  }
+                )}
+                defaultValue={user?.profile?.contactNumber}
                          />
                     {
                         errors.lastName && (
@@ -144,8 +170,9 @@ const EditProfile = () => {
                 </div>
             </div>
 
-            <div className='mt-8'>
-                <button className=' bg-[#F19A3E] text-2xl font-medium font-roboto px-10 py-3 text-white rounded-2xl'>Save & Update</button>
+            <div className='mt-8 flex justify-between'>
+                    <button className='bg-[#F19A3E] text-2xl font-medium font-roboto px-10 py-3 text-white rounded-2xl' onClick={() => navigate("/dashboard/my-profile")}>cancel</button>
+                <button type='submit' className='bg-[#F19A3E] text-2xl font-medium font-roboto px-10 py-3 text-white rounded-2xl'>Save & Update</button>
             </div>
             </form>
         </div>
