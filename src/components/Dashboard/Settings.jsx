@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { CiEdit } from "react-icons/ci";
 import EditProfile from "./EditProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { updateDisplayImage } from "../../Services/Operation/settingsAPI";
+import DeleteProfile from "./DeleteProfile";
 
 const Settings = () => {
   const { token } = useSelector((state) => state.auth);
@@ -86,7 +86,7 @@ const Settings = () => {
             </div>
 
             <div className=" flex mt-8">
-              <div className=" h-[100px] w-[100px] rounded-full bg-green-700">
+              <div className=" h-[100px] w-[100px] rounded-full">
                 <img
                   src={previewSource || user?.image}
                   alt={`profile-${user?.firstName}`}
@@ -140,6 +140,13 @@ const Settings = () => {
               <div>
                 <EditProfile />
               </div>
+
+              <hr className=" border-t-2 border-black mt-10" />
+
+              <div>
+                <DeleteProfile/>
+              </div>
+
             </div>
           </div>
         </div>
