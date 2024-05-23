@@ -1,5 +1,5 @@
 import express from "express"
-import { login, sendOtp, signup } from "../controllers/auth.js"
+import { login, sendOtp, signup } from "../controllers/Auth.js"
 import { contactUs } from "../controllers/Contact.js";
 import { auth } from "../middleware/auth.js";
 import { deleteAccount, getProfileData, updateDisplayPicture, updateProfile } from "../controllers/UpdateProfile.js";
