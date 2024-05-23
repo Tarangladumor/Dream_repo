@@ -7,10 +7,9 @@ const router = express.Router();
 
 router.post("/createcategory",auth,isAdmin,createCategory)
 router.delete("/deletecategory",auth,isAdmin,deleteCategory)
-router.get("/getallcategory",auth,getAllCategory)
 
 router.post("/createbrand",auth,isAdmin,createBrand);
 router.delete("/deletebrand",auth,isAdmin,deleteBrand);
-router.get("/getallbrand",auth,getAllBrand)
+
 
 export default router;

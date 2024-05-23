@@ -19,3 +19,11 @@ export const settings = {
     DELETE_PROFILE_API: BASE_URL + "/auth/deleteaccount",
     UPDATE_VENDOR_DETAILS_API: BASE_URL + "/vendor/updatevendordetials"
 }
+
+export const product = {
+    ADD_PRODUCT_API: BASE_URL + "/individual/createproduct",
+    UPDATE_PRODUCT_API: BASE_URL +"/individual/updateproduct",
+    DELETE_PRODUCT_API: BASE_URL + "/individual/deleteproduct",
+    GET_ALL_CATEGORY_API: BASE_URL + "/individual/getallcategory",
+    GET_ALL_BRAND_API: BASE_URL + "/individual/getallbrand"
+}
