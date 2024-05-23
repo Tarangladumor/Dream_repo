@@ -3,7 +3,9 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile } from '../../Services/Operation/settingsAPI';
-
+import { AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai'
+import {CiLock,CiUnlock} from "react-icons/ci"
+ 
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
 
 const EditProfile = () => {

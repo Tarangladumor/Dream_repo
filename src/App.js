@@ -12,6 +12,7 @@ import Footer from './components/common/Footer'
 import Settings from './components/Dashboard/Settings'
 import AddProduct from './components/Dashboard/Add Product/index'
 import { useDispatch, useSelector } from 'react-redux';
+import { ShopList } from './components/Shopkeeper/ShopList';
 
 function App() {
 
@@ -34,6 +35,8 @@ function App() {
         <Route path='verify-email' element={<VerifyEmail/>}/>
 
         <Route path="forgot-password" element={<ForgotPassword/>}/>
+
+        <Route path="showShopkeepers" element={<ShopList/>}/>
 
         <Route element={<Dashboard/>}>
 

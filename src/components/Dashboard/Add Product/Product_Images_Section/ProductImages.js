@@ -17,33 +17,34 @@ const ProductImages = () => {
   const [invoiceimgNames, setInvoiceimgNames] = useState([]);
 
 
-  const handleProductImages = (e) => {
-    if (e.target.files) {
-      const productfileArray = Array.from(e.target.files);
+
+  // const handleProductImages = (e) => {
+  //   if (e.target.files) {
+  //     const productfileArray = Array.from(e.target.files);
   
-      setProductImgNames((prevImgNames) => {
-        const totalImages = prevImgNames.length + productfileArray.length;
-        if (totalImages <= 3) {
-          return [...prevImgNames, ...productfileArray.map((file) => file.name)];
-        } else {
-          const allowedFiles = productfileArray.slice(0, 3 - prevImgNames.length);
-          return [...prevImgNames, ...allowedFiles.map((file) => file.name)];
-        }
-      });
+  //     setProductImgNames((prevImgNames) => {
+  //       const totalImages = prevImgNames.length + productfileArray.length;
+  //       if (totalImages <= 3) {
+  //         return [...prevImgNames, ...productfileArray.map((file) => file.name)];
+  //       } else {
+  //         const allowedFiles = productfileArray.slice(0, 3 - prevImgNames.length);
+  //         return [...prevImgNames, ...allowedFiles.map((file) => file.name)];
+  //       }
+  //     });
   
-      setProductImages((prevImages) => {
-        const totalImages = prevImages.length + productfileArray.length;
-        if (totalImages <= 3) {
-          return [...prevImages, ...productfileArray];
-        } else {
-          const allowedFiles = productfileArray.slice(0, 3 - prevImages.length);
-          return [...prevImages, ...allowedFiles];
-        }
-      });
+  //     setProductImages((prevImages) => {
+  //       const totalImages = prevImages.length + productfileArray.length;
+  //       if (totalImages <= 3) {
+  //         return [...prevImages, ...productfileArray];
+  //       } else {
+  //         const allowedFiles = productfileArray.slice(0, 3 - prevImages.length);
+  //         return [...prevImages, ...allowedFiles];
+  //       }
+  //     });
   
-      console.log("productarray : ", productImages);
-    }
-  };
+  //     console.log("productarray : ", productImages);
+  //   }
+  // };
 
   const handleInvoiceImages = (e) => {
     if (e.target.files) {
@@ -51,6 +52,7 @@ const ProductImages = () => {
   
       // Only take the first file if multiple files are selected
       const selectedFile = invoicefileArray[0];
+
   
       setInvoiceimgNames([selectedFile.name]);
       setInvoiceImages([selectedFile]);
@@ -59,40 +61,45 @@ const ProductImages = () => {
     }
   };
 
-  const [formData,setFormData] = useState({
-    productImage : [],
-    invoiceImage : []
-  })
+  // const [formData,setFormData] = useState({
+  //   productImage : [],
+  //   invoiceImage : []
+  // })
 
-  const {productImage,invoiceImage} = formData
+  // const {productImage : productImages,invoiceImage : invoiceImages} = formData
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    const formData = {
+      productImage: productImages,
+      invoiceImage: invoiceImages,
+    };
     console.log(formData)
     dispatch(setPage2Data(formData));
     dispatch(setStep(3));
   }
 
-  // const handleProductImages = (e) => {
-  //   if (e.target.files) {
-  //     const productfileArray = Array.from(e.target.files);
+  const handleProductImages = (e) => {
+    if (e.target.files) {
+      const productfileArray = Array.from(e.target.files);
   
-  //     // Only take the first three files if more than three are selected
-  //     const limitedFileArray = productfileArray.slice(0, 3);
+      // Only take the first three files if more than three are selected
+      // const limitedFileArray = productfileArray.slice(0, 3);
+
   
-  //     setProductImgNames((prevImgNames) => [
-  //       ...prevImgNames,
-  //       ...limitedFileArray.map((file) => file.name),
-  //     ]);
+      setProductImgNames((prevImgNames) => [
+        ...prevImgNames,
+        ...productfileArray.map((file) => file.name),
+      ]);
   
-  //     setProductImages((prevImages) => [
-  //       ...prevImages,
-  //       ...limitedFileArray,
-  //     ]);
+      setProductImages((prevImages) => [
+        ...prevImages,
+        ...productfileArray,
+      ]);
   
-  //     console.log("productarray : ", limitedFileArray);
-  //   }
-  // };
+      console.log("productarray : ", productfileArray);
+    }
+  };
 
 
 
