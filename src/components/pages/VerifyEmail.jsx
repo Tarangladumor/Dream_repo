@@ -13,6 +13,7 @@ const VerifyEmail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+
     useEffect(() => {
         if (!signupData) {
             navigate("/signup");

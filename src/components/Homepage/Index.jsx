@@ -4,6 +4,7 @@ import Why_sell from './Why_sell'
 import JoinUs from './JoinUs'
 import WhyChooseUs from './WhyChooseUs'
 import Footer from '../common/Footer'
+import RegisterYourself from './RegisterYourself'
 
 const Index = () => {
   return (
@@ -11,6 +12,8 @@ const Index = () => {
       <Section1/>
 
       <Why_sell/>
+
+      <RegisterYourself/>
 
       <JoinUs/>
 

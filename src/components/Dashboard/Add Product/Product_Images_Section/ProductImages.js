@@ -4,35 +4,68 @@ import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 import { VscPreview } from "react-icons/vsc";
 import { MdNavigateNext } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPage2Data, setStep } from "../../../../Slices/productSlice";
 
 
 const ProductImages = () => {
-  const [selectImages, setSelectImages] = useState([]);
-  const [imgNames, setImgNames] = useState([]);
 
-  const {Page1Data} = useSelector((state)=>state.product)
+  const dispatch = useDispatch();
+  const [productImages, setProductImages] = useState([]);
+  const [invoiceImages, setInvoiceImages] = useState([]);
+  const [productimgNames, setProductImgNames] = useState([]);
+  const [invoiceimgNames, setInvoiceimgNames] = useState([]);
 
-  console.log("data",Page1Data)
 
-  const handleImages = (e) => {
+  const handleProductImages = (e) => {
     if (e.target.files) {
-      const fileArray = Array.from(e.target.files);
+      const productfileArray = Array.from(e.target.files);
 
-      setImgNames((prevImgNames) => [
+      setProductImgNames((prevImgNames) => [
         ...prevImgNames,
-        ...fileArray.map((file) => file.name),
+        ...productfileArray.map((file) => file.name),
       ]);
 
-      setSelectImages((prevImages) => [...prevImages, ...fileArray]);
+      setProductImages((prevImages) => [...prevImages, ...productfileArray]);
 
-      console.log(fileArray);
+      console.log("productarray : ",productfileArray);
     }
   };
 
+  const handleInvoiceImages = (e) => {
+    if(e.target.files) {
+      const invoicefileArray = Array.from(e.target.files);
+
+      setInvoiceimgNames((prevImgNames) => [
+        ...prevImgNames,
+        ...invoicefileArray.map((file) => file.name),
+      ]);
+
+      setInvoiceImages((prevImages) => [...prevImages, ...invoicefileArray]);
+
+      console.log("invoiceArray",invoicefileArray);
+    }
+  }
+
+  const [formData,setFormData] = useState({
+    productImage : [],
+    invoiceImage : []
+  })
+
+  const {productImage,invoiceImage} = formData
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData)
+    dispatch(setPage2Data(formData));
+    dispatch(setStep(3));
+  }
+
+
+
   return (
     <div>
-      <form className="space-y-8 rounded-md border-[2px] border-[#499F682B] p-6">
+      <form onSubmit={handleOnSubmit} className="space-y-8 rounded-md border-[2px] border-[#499F682B] p-6">
         {/* Product Image */}
         <div className="flex flex-col">
           <p className="text-[1rem] font-medium font-roboto ">
@@ -47,7 +80,7 @@ const ProductImages = () => {
                 className="hidden"
                 type="file"
                 multiple
-                onChange={handleImages}
+                onChange={handleProductImages}
               />
 
               <div className="flex p-3 w-full rounded-md items-center justify-between shadow-lg">
@@ -71,14 +104,13 @@ const ProductImages = () => {
           </p>
 
           <div>
-            <label htmlFor="files" name="files">
+            <label htmlFor="invoicefiles" name="invoicefiles">
               <input
-                id="files"
-                name="files"
+                id="invoicefiles"
+                name="invoicefiles"
                 className="hidden"
                 type="file"
-                multiple
-                onChange={handleImages}
+                onChange={handleInvoiceImages}
               />
 
               <div className="flex p-3 w-full rounded-md items-center justify-between shadow-lg">
@@ -94,8 +126,8 @@ const ProductImages = () => {
         </p>
 
         <div className="flex flex-col shadow-lg mb-14 p-[16px] rounded-md">
-          {imgNames.length > 0 ? (
-            imgNames.map((image, index) => (
+          {productimgNames.length > 0 ? (
+            productimgNames.map((image, index) => (
               <div
                 key={index}
                 className="flex p-2 mt-2 rounded-md border-2 border-[#F19A3E] justify-between"
@@ -115,7 +147,7 @@ const ProductImages = () => {
           )}
         </div>
 
-        <button
+        <button type="submit"
           className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-[#174B3A] py-[8px] px-[20px] font-semibold text-[white]`}
         >
           Save & Next

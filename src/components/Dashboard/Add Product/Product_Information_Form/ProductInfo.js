@@ -19,7 +19,6 @@ const ProductInfo = () => {
 
   const dispatch = useDispatch();
   const {token} = useSelector((state) => state.auth)
-  const {page1Data} = useSelector((state) => state.product)
   console.log("token",token);
   const {product,editProduct} = useSelector((state) => state.product);
   const [loading,setLoading] = useState(false)
@@ -152,8 +151,8 @@ const ProductInfo = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    console.log(formData)
     dispatch(setPage1Data(formData));
-    console.log("page1data",page1Data)
     dispatch(setStep(2));
   }
 

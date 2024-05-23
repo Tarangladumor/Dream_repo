@@ -12,17 +12,20 @@ const productSlice = createSlice({
     name: "product",
     initialState,
     reducers: {
-      setStep: (state, value) => {
-        state.step = value.payload
+      setStep: (state, action) => {
+        state.step = action.payload;
       },
-      setPage1Data: (state,value) => {
-        state.page1Data = value.payload
+      setPage1Data: (state,action) => {
+        console.log("action payload",action.payload);
+        console.log("state.page1Data",state.page1Data);
+        state.page1Data = action.payload;
+        console.log("state.page1Data",state.page1Data);
       },
-      setPage2Data: (state,value) => {
-        state.page2Data = value.payload
+      setPage2Data: (state,action) => {
+        state.page2Data = action.payload;
       },
-      setEditProduct: (state,value) => {
-        state.editProduct = value.payload
+      setEditProduct: (state,action) => {
+        state.editProduct = action.payload;
       },
       // resetProductState: (state) => {
       //   state.step = 1
