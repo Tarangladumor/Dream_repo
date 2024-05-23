@@ -20,32 +20,44 @@ const ProductImages = () => {
   const handleProductImages = (e) => {
     if (e.target.files) {
       const productfileArray = Array.from(e.target.files);
-
-      setProductImgNames((prevImgNames) => [
-        ...prevImgNames,
-        ...productfileArray.map((file) => file.name),
-      ]);
-
-      setProductImages((prevImages) => [...prevImages, ...productfileArray]);
-
-      console.log("productarray : ",productfileArray);
+  
+      setProductImgNames((prevImgNames) => {
+        const totalImages = prevImgNames.length + productfileArray.length;
+        if (totalImages <= 3) {
+          return [...prevImgNames, ...productfileArray.map((file) => file.name)];
+        } else {
+          const allowedFiles = productfileArray.slice(0, 3 - prevImgNames.length);
+          return [...prevImgNames, ...allowedFiles.map((file) => file.name)];
+        }
+      });
+  
+      setProductImages((prevImages) => {
+        const totalImages = prevImages.length + productfileArray.length;
+        if (totalImages <= 3) {
+          return [...prevImages, ...productfileArray];
+        } else {
+          const allowedFiles = productfileArray.slice(0, 3 - prevImages.length);
+          return [...prevImages, ...allowedFiles];
+        }
+      });
+  
+      console.log("productarray : ", productImages);
     }
   };
 
   const handleInvoiceImages = (e) => {
-    if(e.target.files) {
+    if (e.target.files) {
       const invoicefileArray = Array.from(e.target.files);
-
-      setInvoiceimgNames((prevImgNames) => [
-        ...prevImgNames,
-        ...invoicefileArray.map((file) => file.name),
-      ]);
-
-      setInvoiceImages((prevImages) => [...prevImages, ...invoicefileArray]);
-
-      console.log("invoiceArray",invoicefileArray);
+  
+      // Only take the first file if multiple files are selected
+      const selectedFile = invoicefileArray[0];
+  
+      setInvoiceimgNames([selectedFile.name]);
+      setInvoiceImages([selectedFile]);
+  
+      console.log("invoiceArray", invoicefileArray);
     }
-  }
+  };
 
   const [formData,setFormData] = useState({
     productImage : [],
@@ -60,6 +72,27 @@ const ProductImages = () => {
     dispatch(setPage2Data(formData));
     dispatch(setStep(3));
   }
+
+  // const handleProductImages = (e) => {
+  //   if (e.target.files) {
+  //     const productfileArray = Array.from(e.target.files);
+  
+  //     // Only take the first three files if more than three are selected
+  //     const limitedFileArray = productfileArray.slice(0, 3);
+  
+  //     setProductImgNames((prevImgNames) => [
+  //       ...prevImgNames,
+  //       ...limitedFileArray.map((file) => file.name),
+  //     ]);
+  
+  //     setProductImages((prevImages) => [
+  //       ...prevImages,
+  //       ...limitedFileArray,
+  //     ]);
+  
+  //     console.log("productarray : ", limitedFileArray);
+  //   }
+  // };
 
 
 
@@ -122,7 +155,7 @@ const ProductImages = () => {
         </div>
 
         <p className="text-[1rem] mt-6 font-medium font-roboto ">
-          Uploaded Image
+          Uploaded Product Image
         </p>
 
         <div className="flex flex-col shadow-lg mb-14 p-[16px] rounded-md">
@@ -146,6 +179,33 @@ const ProductImages = () => {
             </div>
           )}
         </div>
+
+        <p className="text-[1rem] mt-6 font-medium font-roboto ">Uploaded Invoice Image</p> 
+
+<div className='flex flex-col shadow-lg mb-14 p-[16px] rounded-md'>
+
+{ invoiceimgNames.length > 0 ? (
+
+  invoiceimgNames.map((image,index)=>(
+    <div key={index} className='flex p-2 mt-2 rounded-md border-2 border-[#F19A3E] justify-between'>
+      <p>{image}</p>
+      <div className='flex gap-6'>
+      <FaRegEdit className='text-[30px]'/>
+      <VscPreview className='text-[30px]'/>
+      <AiOutlineDelete className='text-[30px]' />
+       
+      </div>
+    </div>
+  ))
+
+) : (
+<div className='text-center h-[100px] flex items-center justify-center' >
+ <p className='text-[1rem] text'> No image uploaded yet !</p>
+</div> 
+)
+}
+
+</div>
 
         <button type="submit"
           className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-[#174B3A] py-[8px] px-[20px] font-semibold text-[white]`}
