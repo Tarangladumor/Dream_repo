@@ -1,7 +1,23 @@
 import React from 'react'
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { deleteAccount } from '../../Services/Operation/settingsAPI';
+
 
 const DeleteProfile = () => {
+
+  const {token} = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  async function handleDeleteAccount() {
+    try{
+      dispatch(deleteAccount(token,navigate))
+    } catch(error) {
+      console.log("ERROR MESSAGE - ", error.message)
+    }
+  }
   return (
     <div className=' mt-10'>
       
@@ -21,7 +37,7 @@ const DeleteProfile = () => {
         </div>
 
         <div className='flex justify-start ml-16'>
-            <button className=' bg-white text-[#F50C0C] font-roboto font-medium text-lg px-16 py-2 rounded-xl hover:bg-[#C0242D] hover:text-white hover:scale-110 transition-all duration-300'>Delete Account</button>
+            <button type='button' onClick={handleDeleteAccount} className=' bg-white text-[#F50C0C] font-roboto font-medium text-lg px-16 py-2 rounded-xl hover:bg-[#C0242D] hover:text-white hover:scale-110 transition-all duration-300'>Delete Account</button>
         </div>
       </div>
       </div>
