@@ -12,11 +12,13 @@ export const createProduct = async (req, res) => {
 
     const userId = req.user.id;
 
-    const invoiceImage = req.files.invoiceImageCloud;
+    console.log(req.files);
 
-    const fileArray = req.files.images;
+    // const invoiceImage = req.files.invoiceImage;
 
-    if (!productName || !category || !fileArray || !productDescription) {
+    // const fileArray = req.files.images;
+
+    if (!productName || !category  || !productDescription) {
       return respond(
         res,
         "all fields are required when product is created",
@@ -42,19 +44,19 @@ export const createProduct = async (req, res) => {
       return respond(res, "Brand Not Found", 404, false);
     }
 
-    const invoiceImageCloud = await uploadImageCloudinary(
-      invoiceImage,
-      process.env.FOLDER_NAME
-    );
+    // const invoiceImageCloud = await uploadImageCloudinary(
+    //   invoiceImage,
+    //   process.env.FOLDER_NAME
+    // );
 
-    const imageData = [];
-    for (const image of fileArray) {
-      const result = await uploadImageCloudinary(
-        image,
-        process.env.FOLDER_NAME
-      );
-      imageData.push(result.secure_url);
-    }
+    // const imageData = [];
+    // for (const image of fileArray) {
+    //   const result = await uploadImageCloudinary(
+    //     image,
+    //     process.env.FOLDER_NAME
+    //   );
+    //   imageData.push(result.secure_url);
+    // }
 
     const newProduct = await Product.create({
       productName,
@@ -64,7 +66,7 @@ export const createProduct = async (req, res) => {
       productDescription,
       individual: individualDetails._id,
       invoiceImage: invoiceImageCloud.secure_url,
-      productImage: imageData,
+      // productImage: imageData,
     });
 
     await User.findByIdAndUpdate(

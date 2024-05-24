@@ -16,13 +16,11 @@ const productSlice = createSlice({
         state.step = action.payload;
       },
       setPage1Data: (state,action) => {
-        console.log("action payload",action.payload);
-        console.log("state.page1Data",state.page1Data);
         state.page1Data = action.payload;
-        console.log("state.page1Data",state.page1Data);
       },
       setPage2Data: (state,action) => {
         state.page2Data = action.payload;
+        console.log(state.page2Data);
       },
       setEditProduct: (state,action) => {
         state.editProduct = action.payload;
