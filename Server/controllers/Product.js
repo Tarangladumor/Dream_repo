@@ -5,18 +5,17 @@ import { Brand } from "../models/Brand.js";
 import { uploadImageCloudinary } from "../utils/ImageUploader.js";
 import { respond } from "../utils/response.js";
 
+// 
+
 export const createProduct = async (req, res) => {
   try {
-    const { productName, category, brandName, modelName, productDescription } =
-      req.body;
+    const { productName, category, brandName, modelName, productDescription } = req.body;
 
     const userId = req.user.id;
 
     console.log(req.body);
 
     const productImage = req.files.productImageUpload;
-
-    const productVideo = req.files.productVideoUpload;
 
     const invoiceImage = req.files.invoiceImageUpload;
     // const invoiceImage = req.files.invoiceImage;
@@ -52,8 +51,6 @@ export const createProduct = async (req, res) => {
 
     const invoiceImageUpload = await uploadImageCloudinary(invoiceImage, process.env.FOLDER_NAME);
 
-    const productVideoUpload = await uploadImageCloudinary(productVideo, process.env.FOLDER_NAME);
-
     const newProduct = await Product.create({
       productName,
       category: categoryDetails._id,
@@ -63,7 +60,6 @@ export const createProduct = async (req, res) => {
       individual: individualDetails._id,
       productImage: productImageUpload.secure_url,
       invoiceImage: invoiceImageUpload.secure_url,
-      productVideo: productVideoUpload.secure_url
     });
 
     await User.findByIdAndUpdate(
