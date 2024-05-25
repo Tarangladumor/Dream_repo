@@ -13,6 +13,7 @@ import Settings from './components/Dashboard/Settings'
 import AddProduct from './components/Dashboard/Add Product/index'
 import { useDispatch, useSelector } from 'react-redux';
 import { ShopList } from './components/Shopkeeper/ShopList';
+import ProductInfo from './components/Dashboard/Add Product/Product_Information_Form/ProductInfo';
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
 
           <Route path='/dashboard/Settings' element={<Settings/>}/>
 
-          <Route path='/dashboard/add-product' element={<AddProduct/>}/>
+          <Route path='/dashboard/add-product' element={<ProductInfo/>}/>
         </Route>
 
       </Routes>

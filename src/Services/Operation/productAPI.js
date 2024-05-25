@@ -90,18 +90,15 @@ export const getAllBrand = async (token) => {
 //     }
 // }
 
-export const addProduct = async (data, token) => {
+export const addProduct = async (data, token,navigate) => {
     let result = null;
     const toastId = toast.loading("Loading...")
     console.log("tOKEN.....", token)
     try {
-        const response = await apiConnector("POST", ADD_PRODUCT_API, {
-            data
-        },
-            {
-                "Contect-Type": "multipart/form-data",
-                Authorization: `Bearer ${token}`
-            }
+        const response = await apiConnector("POST", ADD_PRODUCT_API,data, {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        }   
         )
         console.log("ADD_PRODUCT_API RESPONSE.....", response)
 
@@ -110,12 +107,16 @@ export const addProduct = async (data, token) => {
         }
         toast.success("Product added successfully")
         result = response?.data?.data
-
+        navigate("/dashboard/my-products")
     } catch (error) {
         console.log("ADD_PRODUCT_API ERROR.....", error);
         toast.error(error.message)
     }
     toast.dismiss(toastId);
     return result
+}
+
+export const editProductDetails = async (data,token) => {
+    
 }
 
