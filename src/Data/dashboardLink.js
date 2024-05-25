@@ -52,3 +52,18 @@ export const individualLinks = [
         icon : <FaHeartCirclePlus />
     }
 ]
+
+export const vendorLinks = [
+    {
+        id:1,
+        name:"All Products",
+        path:"/dashboard/all-products",
+        icon : <FaBookmark />
+    },
+    {
+        id:2,
+        name:"Interested products",
+        path:"/dashboard/intrested-shopkeeper-products",
+        icon:  <FaHeartCirclePlus />
+    }
+]

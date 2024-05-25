@@ -36,7 +36,7 @@ function App() {
 
         <Route path="forgot-password" element={<ForgotPassword/>}/>
 
-        <Route path="showShopkeepers" element={<ShopList/>}/>
+        <Route path="allvendors" element={<ShopList/>}/>
 
         <Route element={<Dashboard/>}>
 

@@ -3,10 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import REWARD from '../../assets/Reward_image.png'
 import { useSelector } from 'react-redux';
+import { ACCOUNT_TYPE } from '../../utils/constant';
 
 const MyProfile = () => {
 
   const {user} = useSelector((state) => state.profile)
+
+  console.log(user);
 
   console.log("data",user)
 
@@ -138,6 +141,65 @@ const MyProfile = () => {
         </div>
 
       </div>
+
+      {
+        user?.accountType == ACCOUNT_TYPE.VENDOR ? (
+          <div className=' flex flex-col gap-1 mt-10'>
+
+  <div className='flex justify-between'>
+
+    <p className=' text-xl font-medium font-roboto'>Shop details</p>
+
+    <Link className='underline text-[#A27647] text-xl font-roboto mr-2'>Edit details</Link>
+  </div>
+
+
+
+  <div className='bg-[#499F68] bg-opacity-[17%] rounded-2xl py-5'>
+
+    <div className='flex justify-between mx-auto lg:max-w-[90%]'>
+      <div className=' flex flex-col gap-10'>
+
+        <div>
+          <p className=' font-medium text-[22px] font-roboto'>Shop Name</p>
+          <p className=' font-medium text-xl font-roboto opacity-50'>Abc electronic shop</p>
+        </div>
+
+        <div>
+          <p className=' font-medium text-[22px] font-roboto'>GST Number</p>
+          <p className=' font-medium text-xl font-roboto opacity-50'>ABC1234</p>
+        </div>
+      </div>
+
+      <div className=' flex flex-col gap-10'>
+
+        <div>
+          <p className=' font-medium text-[22px] font-roboto'>Address</p>
+          <p className=' font-medium text-xl font-roboto opacity-50 w-[80%]'>Abc road, Waghodiya, Vadodara</p>
+        </div>
+
+        <div>
+          <p className=' font-medium text-[22px] font-roboto'>State/Country</p>
+          <p className=' font-medium text-xl font-roboto opacity-50'>Gujarat/India</p>
+        </div>
+      </div>
+
+      <div className=' flex flex-col gap-10'>
+
+        <div>
+          <p className=' font-medium text-[22px] font-roboto'>GST Invoice</p>
+          <p className=' font-medium text-xl font-roboto opacity-50'>/</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+        ) : (
+          <div></div>
+        )
+      }
 
 
       {/* History Section */}

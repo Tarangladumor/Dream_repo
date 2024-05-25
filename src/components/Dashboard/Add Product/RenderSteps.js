@@ -3,8 +3,6 @@ import React from 'react'
 import { FaCheck } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import ProductInformationForm from "./Product_Information_Form/ProductInfo"
-import ProductImages from "./Product_Images_Section/ProductImages"
-import ProductPreview from "./Product_preview/ProductPreview"
 
 
 export const RenderSteps = () => {
@@ -82,9 +80,8 @@ export const RenderSteps = () => {
         ))}
       </div>
       
-      {step === 1 && <ProductInformationForm/>}
-      {step === 2 && <ProductImages />}
-      {step === 3 &&  <ProductPreview/> }
+      {<ProductInformationForm/>}
+
         </>
     )
 }

@@ -16,7 +16,6 @@ export const createProduct = async (req, res) => {
 
     const productImage = req.files.productImageUpload;
 
-    const productVideo = req.files.productVideoUpload;
 
     const invoiceImage = req.files.invoiceImageUpload;
     // const invoiceImage = req.files.invoiceImage;
@@ -52,7 +51,6 @@ export const createProduct = async (req, res) => {
 
     const invoiceImageUpload = await uploadImageCloudinary(invoiceImage, process.env.FOLDER_NAME);
 
-    const productVideoUpload = await uploadImageCloudinary(productVideo, process.env.FOLDER_NAME);
 
     const newProduct = await Product.create({
       productName,
@@ -63,7 +61,6 @@ export const createProduct = async (req, res) => {
       individual: individualDetails._id,
       productImage: productImageUpload.secure_url,
       invoiceImage: invoiceImageUpload.secure_url,
-      productVideo: productVideoUpload.secure_url
     });
 
     await User.findByIdAndUpdate(

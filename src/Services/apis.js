@@ -27,3 +27,8 @@ export const product = {
     GET_ALL_CATEGORY_API: BASE_URL + "/individual/getallcategory",
     GET_ALL_BRAND_API: BASE_URL + "/individual/getallbrand"
 }
+
+export const vendor = {
+    GET_ALL_VENDOR: BASE_URL + "/individual/getshopbycity",
+    GET_ALL_PRODUCTS : BASE_URL + "/vendor/getallproducts"
+}

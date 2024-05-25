@@ -30,10 +30,6 @@ const productSchema = new mongoose.Schema({
         type: String,
     }
     ,
-    productVideo: {
-        required: true,
-        type: String,
-    },
     invoiceImage: {
         type: String,
     },

@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ShopCard } from './ShopCard';
 import { IoAdd } from "react-icons/io5";
 import ShopListImage from '../../assets/ShopListImage1.png';
+import { getShopbyCity } from '../../Services/Operation/vendorAPI';
+import { useSelector } from 'react-redux';
 
 
 const shopData = [
@@ -54,7 +56,20 @@ const shopData = [
 ];
 
 export const ShopList = () => {
+
+  const {token} = useSelector((state) => state.auth);
   const [showAll, setShowAll] = useState(false);
+
+  const[shopkeepers, setShopkeepers] = useState([]);
+
+  const getshopData = async() => {
+    const result = await getShopbyCity(token);
+    setShopkeepers(result);
+  }
+
+  getshopData();
+
+  console.log("ARRAY..................",shopkeepers);
   
   return (
     <div className='w-10/12 flex flex-col justify-center space-y-8 p-4 mx-auto'>
@@ -66,7 +81,7 @@ export const ShopList = () => {
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
            
-        {shopData.slice(0, showAll ? shopData.length : 6).map((shop, index) => (
+        {shopkeepers.slice(0, showAll ? shopkeepers.length : 6).map((shop, index) => (
           <ShopCard key={index} shop={shop} />
         ))}
         </div>

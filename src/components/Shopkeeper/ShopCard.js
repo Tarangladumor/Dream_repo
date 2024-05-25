@@ -7,9 +7,9 @@ export const ShopCard = ({shop}) => {
     <>
      <div>
         <div className='bg-[#292D2A] text-white p-8 rounded-md flex flex-col gap-1 '>
-            <p className='text-xl font-semibold'>{shop.name}</p>
+            <p className='text-xl font-semibold'>{shop?.firstName}</p>
             <p className='text-white mt-2 opacity-75 text-[15px]'>GST Number: {shop.gstNumber}</p>
-            <p className='text-white opacity-75 text-[15px]'>Location: {shop.location}</p>
+            <p className='text-white opacity-75 text-[15px]'>Location: {shop?.city}</p>
           <div className='flex justify-between items-center  mt-5'>
             {/* Star */}
             <div className='flex items-center' >
