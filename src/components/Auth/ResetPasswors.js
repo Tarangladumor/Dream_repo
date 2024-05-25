@@ -32,7 +32,7 @@ const ResetPasswors = () => {
  
   <form action="" className='w-[50%]'>
   <div>
-                  <label for="newpassword" class="block mb-2 mt-3 font-medium  text-xl text-[#000000b5] font-roboto">New password <span className=' text-red-700'>*  </span></label>
+                  <label for="newpassword" className="block mb-2 mt-3 font-medium  text-xl text-[#000000b5] font-roboto">New password <span className=' text-red-700'>*  </span></label>
                   <div>
                     <input className=' bg-[#499f682b] transition-all duration-200 hover:scale-105 font-roboto placeholder:text-2xl' type="password" name="password" id="" placeholder='••••••' />
                     <div className=' absolute ml-[26.5rem] -mt-[2.5rem] text-[#000000b5] text-xl  '>
@@ -42,7 +42,7 @@ const ResetPasswors = () => {
                   
     </div>
     <div >
-                  <label for="newpassword" class="block mb-2 mt-3 font-medium  text-xl text-[#000000b5] font-roboto">Confirm password <span className=' text-red-700'>*  </span></label>
+                  <label for="newpassword" className="block mb-2 mt-3 font-medium  text-xl text-[#000000b5] font-roboto">Confirm password <span className=' text-red-700'>*  </span></label>
                   <div className=''>
                     <input className=' bg-[#499f682b] transition-all duration-200 hover:scale-105 font-roboto placeholder:text-2xl' type="password" name="password" id="" placeholder='1234' />
                     <div className=' absolute ml-[26.5rem] -mt-[2.5rem] text-[#000000b5] text-xl  '>
