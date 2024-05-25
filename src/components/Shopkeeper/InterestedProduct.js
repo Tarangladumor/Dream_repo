@@ -4,57 +4,60 @@ import { Link } from 'react-router-dom';
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 
+const IntrestedProduct = [
+    {
+        product_name:"abc",
+        model_number:"AJIX3421",
+        pricerange:"5000-7000",
+        like:<FaRegHeart className=' text-red-600'/>,
+        like_1:<FaHeart className='text-red-600 '/>,
+        time:"1k"
+    },
+    {
+        product_name:"abc",
+        model_number:"AJIX3421",
+        pricerange:"5000-7000",
+        like:<FaRegHeart className=' text-red-600'/>,
+        like_1:<FaHeart className='text-red-600 '/>,
+        time:"1k"
+    },
+    {
+        product_name:"abc",
+        model_number:"AJIX3421",
+        pricerange:"5000-7000",
+        like:<FaRegHeart className=' text-red-600'/>,
+        like_1:<FaHeart className='text-red-600 '/>,
+        time:"1k"
+    },
+    {
+        product_name:"abc",
+        model_number:"AJIX3421",
+        pricerange:"5000-7000",
+        like:<FaRegHeart className=' text-red-600'/>,
+        like_1:<FaHeart className='text-red-600 '/>,
+        time:"1k"
+    },
+    {
+        product_name:"abc",
+        model_number:"AJIX3421",
+        pricerange:"5000-7000",
+        like:<FaRegHeart className=' text-red-600'/>,
+        like_1:<FaHeart className='text-red-600 '/>,
+        time:"1k"
+    },
+   
+  ]
+
 const InterestedProduct = () => {
     const location = useLocation();
-    const [isLike,setIslike] = useState(false)
-
+    const [isLike,setIslike] = useState(false);
+    const [showShopkeeperDetails,setShowShopkeeperDetails] = useState(false);
+    
     const handleLike = ()=>{
         setIslike(!isLike);
     }
 
-    const IntrestedProduct = [
-        {
-            product_name:"abc",
-            model_number:"AJIX3421",
-            pricerange:"5000-7000",
-            like:<FaRegHeart className=' text-red-600'/>,
-            like_1:<FaHeart className='text-red-600 '/>,
-            time:"1k"
-        },
-        {
-            product_name:"abc",
-            model_number:"AJIX3421",
-            pricerange:"5000-7000",
-            like:<FaRegHeart className=' text-red-600'/>,
-            like_1:<FaHeart className='text-red-600 '/>,
-            time:"1k"
-        },
-        {
-            product_name:"abc",
-            model_number:"AJIX3421",
-            pricerange:"5000-7000",
-            like:<FaRegHeart className=' text-red-600'/>,
-            like_1:<FaHeart className='text-red-600 '/>,
-            time:"1k"
-        },
-        {
-            product_name:"abc",
-            model_number:"AJIX3421",
-            pricerange:"5000-7000",
-            like:<FaRegHeart className=' text-red-600'/>,
-            like_1:<FaHeart className='text-red-600 '/>,
-            time:"1k"
-        },
-        {
-            product_name:"abc",
-            model_number:"AJIX3421",
-            pricerange:"5000-7000",
-            like:<FaRegHeart className=' text-red-600'/>,
-            like_1:<FaHeart className='text-red-600 '/>,
-            time:"1k"
-        },
-       
-      ]
+    
   return (
     <div className=' bg-[#DCE2DE] h-[100vh]'>
 
@@ -86,9 +89,8 @@ const InterestedProduct = () => {
                                         !isLike ? <FaRegHeart className=' text-red-600'/> : <FaHeart className='text-red-600 '/>
                                     }
                                     <span className='-mt-1 text-black'>{card.time}</span></p>
-                                    <p className=' underline'>
-                                    <Link to={"/"}>More details</Link>
-                                    </p>
+                                    <button 
+                                    onClick={() => setShowShopkeeperDetails(true)}>More details</button>
                                     
                                 </div>
                             </div>
