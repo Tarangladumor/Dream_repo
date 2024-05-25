@@ -33,15 +33,15 @@ const ForgotPassword = () => {
             <img className="w-[14.6rem] h-[10.75rem] " src={RESET} alt="" />
           </div>
           <div className=" text-section-rgba text-3xl font-roboto font-bold">
-            <p>Reset your password!</p>
+          {!emailSent ? (<p>Reset your password!</p>) : (<p>Verify Email</p>)}
           </div>
           <div className="w-[28%] text-center text-section-rgba font-roboto mt-1 font-medium">
-            <p>
+          {!emailSent ? (<p>
               Have no fear. We’ll email the instructions to reset your password.{" "}
-            </p>
+            </p>) : (<p>We have sent a reset email to abc1234@gmail.com</p>)}
           </div>
           <form onSubmit={handleOnSubmit}>
-          <div className="w-[30%]">
+          {!emailSent && (<div className="w-[30%]">
             <label
               for="email"
               class="block mb-2 mt-3 font-medium text-gray-900 text-xl text-loginitem font-roboto"
@@ -62,7 +62,7 @@ const ForgotPassword = () => {
                 size={30}
               />
             </div>
-          </div>
+          </div>)}
           <div className="">
             <button className=" bg-register-rgba m-auto p-4 px-10 rounded-3xl tracking-widest w-[100%] transition-all duration-200 hover:scale-105 text-white flex justify-center text-xl mb-6 mt-4 font-semibold font-roboto">
               {!emailSent ? "Submit" : "Resend Email"}

@@ -18,6 +18,7 @@ export const settings = {
     CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
     DELETE_PROFILE_API: BASE_URL + "/auth/deleteaccount",
     UPDATE_VENDOR_DETAILS_API: BASE_URL + "/vendor/updatevendordetials"
+
 }
 
 export const product = {
@@ -25,5 +26,18 @@ export const product = {
     UPDATE_PRODUCT_API: BASE_URL +"/individual/updateproduct",
     DELETE_PRODUCT_API: BASE_URL + "/individual/deleteproduct",
     GET_ALL_CATEGORY_API: BASE_URL + "/individual/getallcategory",
-    GET_ALL_BRAND_API: BASE_URL + "/individual/getallbrand"
+    GET_ALL_BRAND_API: BASE_URL + "/individual/getallbrand",
+    GET_ALL_SHOPBYCITY_API: BASE_URL + "/individual/getshopbycity",
+    GET_ALL_PRODUCTS_OF_USER_API: BASE_URL + "/individual/getallproductsofuser",
+    GET_ALL_INTERESTED_SHOPKEEPER: BASE_URL + "/individual/allinterestedshopekeepers",
+    GET_ALL_INTERESTED_PRODUCTS_OF_USER: BASE_URL + "/individual/allinterestedproductsofuser"
 }
+
+export const vendor = {
+    ADD_PRICE: BASE_URL + "/vendor/addprice",
+    EDIT_PRICE: BASE_URL + "/vendor/editprice",
+    GET_ALL_PRODUCTS: BASE_URL + "vendor/getallproducts",
+    GET_ALL_INTERESTED_PRODUCTS_OF_SHOPKEEPER: "/vendor/interestedproduct",
+    GET_ALL_OTHER_SHOPKEEPER_PRICE: "/vendor/othershopkeeperprice"
+}
+

@@ -13,6 +13,7 @@ import Settings from './components/Dashboard/Settings'
 import AddProduct from './components/Dashboard/Add Product/index'
 import { useDispatch, useSelector } from 'react-redux';
 import { ShopList } from './components/Shopkeeper/ShopList';
+import ResetPassword from './components/Auth/ResetPassword';
 
 function App() {
 
@@ -35,6 +36,8 @@ function App() {
         <Route path='verify-email' element={<VerifyEmail/>}/>
 
         <Route path="forgot-password" element={<ForgotPassword/>}/>
+
+        <Route path="reset-password/:id" element={<ResetPassword/>}/>
 
         <Route path="showShopkeepers" element={<ShopList/>}/>
 

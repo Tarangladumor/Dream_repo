@@ -8,8 +8,6 @@ const BASE_URL = "http://localhost:4000/api/v1"
 
 const { ADD_PRODUCT_API, UPDATE_PRODUCT_API, DELETE_PRODUCT_API, GET_ALL_BRAND_API, GET_ALL_CATEGORY_API } = product
 
-
-
 export const getAllCategory = async (token) => {
     let result = []
     console.log(token)
@@ -89,4 +87,6 @@ export function addProduct(productName, category, modelName, brandName, productD
         toast.dismiss(toastId)
     }
 }
+
+
 

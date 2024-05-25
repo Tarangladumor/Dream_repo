@@ -1,7 +1,7 @@
 import express from "express"
-import { createCategory, deleteCategory, getAllCategory } from "../controllers/category.js";
+import { createCategory, deleteCategory} from "../controllers/category.js";
 import {auth,isAdmin} from "../middleware/auth.js"
-import { createBrand, deleteBrand, getAllBrand } from "../controllers/Brand.js";
+import { createBrand, deleteBrand} from "../controllers/Brand.js";
 
 const router = express.Router();
 

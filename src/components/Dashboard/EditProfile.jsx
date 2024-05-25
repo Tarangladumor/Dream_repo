@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateProfile } from '../../Services/Operation/settingsAPI';
+import {updateProfile } from '../../Services/Operation/settingsAPI';
+import ChangePassword from './ChangePassword';
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
 
 const EditProfile = () => {
@@ -18,9 +19,6 @@ const EditProfile = () => {
         formState: { errors },
     } = useForm();
    
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
     const submitProfileform = async (data) => {
         try{
             dispatch(updateProfile(token,data))
@@ -178,75 +176,9 @@ const EditProfile = () => {
             </div>
             </form>
             
-               
-            <div className=" mt-12">
-                <p className=" font-roboto font-medium text-2xl">
-                  Edit your password
-                </p>
-
-                <hr className=" border-t-2 border-black mt-2" />
+            <div>
+                <ChangePassword/>
             </div>
-
-            <form className='mt-10 '>
-
-              <div className='flex gap-6 items-center '>
- 
-                {/*Current Password */}
-
-                <div className="relative">
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        placeholder="Current Password"
-                        className="input_feild"
-                    />
-
-                    <span
-                        onClick={() => setShowPassword((prev) => !prev)}
-                        className="absolute right-3 top-[9px] z-[10] cursor-pointer opacity-20"
-                    >
-                        {showPassword ? (
-                            <AiOutlineEyeInvisible size={30} />
-                        ) : (
-                            <AiOutlineEye size={30} />
-                        )}
-                    </span>
-                </div>
-
-
-                {/* Change Password */}
-                <div className="relative">
-                    <input
-                        type={showConfirmPassword ? "text" : "password"}
-                        name="confirmPassword"
-                        placeholder="Change Password"
-                        className="input_feild "
-                    />
-
-                    <span
-                        onClick={() => setShowConfirmPassword((prev) => !prev)}
-                        className="absolute right-3 top-[9px] z-[10] cursor-pointer opacity-20"
-                    >
-                        {showConfirmPassword ? (
-                            <CiLock size={30} />
-                        ) : (
-                            <CiUnlock size={30} />
-                        )}
-                    </span>
-                </div>
-
-                
-            
-            </div>
-
-            <div className='mt-8 flex justify-between'>
-                    <button className='bg-[#F19A3E] text-[18px] font-medium font-roboto px-8 py-3 text-white rounded-md'
-                    // onClick={() => navigate("/dashboard/my-profile")}
-                    >Cancel</button>
-                    <button type='submit' className='bg-[#F19A3E] text-[18px] font-medium font-roboto px-8 py-3 text-white rounded-md'>Save & Update</button>
-                </div>
-
-            </form>
 
         </div>
     )
