@@ -5,10 +5,11 @@ import { Brand } from "../models/Brand.js";
 import { uploadImageCloudinary } from "../utils/ImageUploader.js";
 import { respond } from "../utils/response.js";
 
+// 
+
 export const createProduct = async (req, res) => {
   try {
-    const { productName, category, brandName, modelName, productDescription } =
-      req.body;
+    const { productName, category, brandName, modelName, productDescription } = req.body;
 
     const userId = req.user.id;
 
@@ -16,7 +17,10 @@ export const createProduct = async (req, res) => {
 
     const productImage = req.files.productImageUpload;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 98adbd349577228dd3d81b5912bbff5dd72c0642
     const invoiceImage = req.files.invoiceImageUpload;
     // const invoiceImage = req.files.invoiceImage;
 
@@ -51,7 +55,10 @@ export const createProduct = async (req, res) => {
 
     const invoiceImageUpload = await uploadImageCloudinary(invoiceImage, process.env.FOLDER_NAME);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 98adbd349577228dd3d81b5912bbff5dd72c0642
     const newProduct = await Product.create({
       productName,
       category: categoryDetails._id,

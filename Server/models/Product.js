@@ -28,8 +28,12 @@ const productSchema = new mongoose.Schema({
     productImage: {
         required: true,
         type: String,
+<<<<<<< HEAD
     }
     ,
+=======
+    },
+>>>>>>> 98adbd349577228dd3d81b5912bbff5dd72c0642
     invoiceImage: {
         type: String,
     },
