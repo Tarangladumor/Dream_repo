@@ -22,8 +22,6 @@ const ProductPreview = () => {
   console.log("page2Data...........", page2Data);
   const images = [page2Data.productImage];
   const invoiceImage = [page2Data.invoiceImage];
-  console.log(invoiceImage)
-  console.log(images);
 
   const combinedData = {
     ...page1Data,
@@ -33,21 +31,11 @@ const ProductPreview = () => {
   console.log("DATA........", combinedData);
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (data) => {
 
-    e.preventDefault();
+    console.log("HIIIIIII,.....",data);
 
-    const {
-      productName, category, modelName, brandName, productDescription
-    } = page1Data;
-
-    const {
-      productImage,invoiceImage,
-    } = page2Data;
-
-
-    dispatch(addProduct(productName,category,modelName,brandName,productDescription,productImage,invoiceImage,navigate,token));
-
+    dispatch(addProduct(combinedData, token));
 
   }
 
@@ -86,7 +74,7 @@ const ProductPreview = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-1">
+              {/* <div className="flex flex-col gap-1">
                 <p className=" font-roboto font-medium text-[22px]">
                   Product images
                 </p>
@@ -101,23 +89,15 @@ const ProductPreview = () => {
                         className="border-2 border-black hover:scale-[10]"
                       /></>
                   ))}
-
-                  {/* <div>
-                    {
-                      previewLinks.map((link, index) => (
-                        <img key={index} src={link} alt={`preview - ${index}`} />
-                      ))
-                    }
-                  </div> */}
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-1">
                 <p className=" font-roboto font-medium text-[22px]">Category</p>
                 <p className=" font-roboto font-medium text-[16px] opacity-60">
-                  {page1Data.category.categoryName}
+                  {page1Data.category}
                 </p>
               </div>
 
@@ -128,7 +108,7 @@ const ProductPreview = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-1">
+              {/* <div className="flex flex-col gap-1">
                 <p className=" font-roboto font-medium text-[22px]">
                   Invoice image
                 </p>
@@ -142,7 +122,7 @@ const ProductPreview = () => {
                       className="border-2 border-black"
                     /></>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 

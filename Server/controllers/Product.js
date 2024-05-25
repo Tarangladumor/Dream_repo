@@ -12,13 +12,17 @@ export const createProduct = async (req, res) => {
 
     const userId = req.user.id;
 
-    console.log(req.files);
+    console.log(req.body);
 
+    const productImage = req.files.productImageUpload;
+
+    const productVideo = req.files.productVideoUpload;
+
+    const invoiceImage = req.files.invoiceImageUpload;
     // const invoiceImage = req.files.invoiceImage;
 
-    // const fileArray = req.files.images;
 
-    if (!productName || !category  || !productDescription) {
+    if (!productName || !category  || !productDescription) {  
       return respond(
         res,
         "all fields are required when product is created",
@@ -32,7 +36,7 @@ export const createProduct = async (req, res) => {
     });
 
     const categoryDetails = await Category.findById({ _id: category });
-    console.log("details:", categoryDetails);
+    // console.log("details:", categoryDetails);
 
     if (!categoryDetails) {
       return respond(res, "Categories details Not Found", 404, false);
@@ -44,19 +48,11 @@ export const createProduct = async (req, res) => {
       return respond(res, "Brand Not Found", 404, false);
     }
 
-    // const invoiceImageCloud = await uploadImageCloudinary(
-    //   invoiceImage,
-    //   process.env.FOLDER_NAME
-    // );
+    const productImageUpload = await uploadImageCloudinary(productImage, process.env.FOLDER_NAME);
 
-    // const imageData = [];
-    // for (const image of fileArray) {
-    //   const result = await uploadImageCloudinary(
-    //     image,
-    //     process.env.FOLDER_NAME
-    //   );
-    //   imageData.push(result.secure_url);
-    // }
+    const invoiceImageUpload = await uploadImageCloudinary(invoiceImage, process.env.FOLDER_NAME);
+
+    const productVideoUpload = await uploadImageCloudinary(productVideo, process.env.FOLDER_NAME);
 
     const newProduct = await Product.create({
       productName,
@@ -65,13 +61,15 @@ export const createProduct = async (req, res) => {
       modelName,
       productDescription,
       individual: individualDetails._id,
-      invoiceImage: invoiceImageCloud.secure_url,
-      // productImage: imageData,
+      productImage: productImageUpload.secure_url,
+      invoiceImage: invoiceImageUpload.secure_url,
+      productVideo: productVideoUpload.secure_url
     });
 
     await User.findByIdAndUpdate(
       {
         _id: req.user.id,
+
       },
       {
         $push: {

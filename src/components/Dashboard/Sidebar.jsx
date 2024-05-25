@@ -9,8 +9,8 @@ const Sidebar = () => {
 
             <div className='flex flex-col gap-5'>
                 {
-                    sidebarLinks.map((link) => (
-                        <SidebarLink link={link} iconName={link.icon} key={link.id} />
+                    sidebarLinks.map((link,index) => (
+                        <SidebarLink link={link} iconName={link.icon} key={index} />
                     ))
                 }
             </div>

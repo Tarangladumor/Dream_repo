@@ -15,7 +15,7 @@ const ProfileDropdown = () => {
 
   const [open, setOpen] = useState(false);
   return (
-    <burton className=' relative cursor-pointer' onClick={() => setOpen(true)}>
+    <button className=' relative cursor-pointer' onClick={() => setOpen(true)}>
 
       <div className='flex items-center gap-x-1'>
         <img src={user?.image}
@@ -45,7 +45,7 @@ const ProfileDropdown = () => {
           </div>
         )
       }
-    </burton>
+    </button>
   )
 }
 

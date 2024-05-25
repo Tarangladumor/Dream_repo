@@ -25,12 +25,15 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    productImage : [
-        {
-            // required: true,
-            type: String,
-        }
-    ],
+    productImage: {
+        required: true,
+        type: String,
+    }
+    ,
+    productVideo: {
+        required: true,
+        type: String,
+    },
     invoiceImage: {
         type: String,
     },

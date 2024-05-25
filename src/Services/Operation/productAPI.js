@@ -58,35 +58,64 @@ export const getAllBrand = async (token) => {
     return result
 }
 
-export function addProduct(productName, category, modelName, brandName, productDescription, productImage, invoiceImage, navigate,token) {
-    return async (dispatch) => {
-        const toastId = toast.loading("Loading...")
-        dispatch(setLoading(true))
-        // console.log(first)
-        try {
-            console.log("START",invoiceImage);
-            const response = await apiConnector("POST", ADD_PRODUCT_API, {
-                productName, category, modelName, brandName, productDescription, productImage, invoiceImage
-            }, 
-                {"Contect-Type":"multipart/form-data",
-                Authorization: `Bearer ${token}`}
-            )
+// export function addProduct(data,token) {
+//     let result = null;
+//     console.log(token);
+//     const toastId = toast.loading("Loading...")
+//     return async () => {
+//         console.log(data);
+//         try {
+//             // console.log("START",invoiceImage);
+//             const response = await apiConnector("POST", ADD_PRODUCT_API, {
+//                data
+//             }, 
+//                 {"Contect-Type":"multipart/form-data",
+//                 Authorization: `Bearer ${token}`}
+//             )
 
-            console.log("ADD PRODUCT API RESPONSE............", response)
+//             console.log("ADD PRODUCT API RESPONSE............", response)
 
-            if (!response.data.success) {
-                throw new Error(response.data.message)
+//             if (!response.data.success) {
+//                 throw new Error(response.data.message)
+//             }
+
+//             toast.success("Product Add Successfully")
+//             result = response?.data?.data;
+//         } catch (error) {
+//             console.log("PRODUCT ADD ERROR............", error)
+//             toast.error("Product is not added")
+//         }
+//         toast.dismiss(toastId)
+//         return result;
+//     }
+// }
+
+export const addProduct = async (data, token) => {
+    let result = null;
+    const toastId = toast.loading("Loading...")
+    console.log("tOKEN.....", token)
+    try {
+        const response = await apiConnector("POST", ADD_PRODUCT_API, {
+            data
+        },
+            {
+                "Contect-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`
             }
+        )
+        console.log("ADD_PRODUCT_API RESPONSE.....", response)
 
-            toast.success("Product Add Successfully")
-            navigate("/my-products")
-        } catch (error) {
-            console.log("PRODUCT ADD ERROR............", error)
-            toast.error("Product is not added")
-            navigate("/dashboard/add-product")
+        if (!response?.data?.success) {
+            throw new Error("Could not Add Course Details")
         }
-        dispatch(setLoading(false))
-        toast.dismiss(toastId)
+        toast.success("Product added successfully")
+        result = response?.data?.data
+
+    } catch (error) {
+        console.log("ADD_PRODUCT_API ERROR.....", error);
+        toast.error(error.message)
     }
+    toast.dismiss(toastId);
+    return result
 }
 
