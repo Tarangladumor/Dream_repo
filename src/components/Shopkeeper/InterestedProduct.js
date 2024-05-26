@@ -5,6 +5,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { InterestedProductOfIndividual } from '../../Services/Operation/productAPI';
 import { useSelector } from 'react-redux';
+import ShopDetailModel from './ShopDetailModel';
 
 const IntrestedProduct = [
     {
