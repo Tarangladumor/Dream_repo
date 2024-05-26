@@ -32,17 +32,17 @@ const IndividualMyProducts = () => {
 
 
             <div className="flex mt-14 flex-col p-10 justify-center items-center gap-8">
-                {myProducts.map((item, index) => (
-                    <div className="flex shadow-lg rounded-md bg-[white] p-2 w-[80%]">
+                    {myProducts.map((item, index) => (
+                    <div key={index} className="flex shadow-lg rounded-md bg-[white] p-2 w-[80%]">
                         <div className="w-[5rem] h-[6rem] border-4">
-                            <img src={item?.productImage} alt="" />
+                            <img src={item.productImage} alt="" />
                         </div>
 
                         <div className="flex flex-col font-roboto ml-10 ">
                             <p className="text-bleck font-semibold">{item.productName}</p>
                             <p className=" text-loginitem">{item.modelName}</p>
                             <p className=" text-loginitem">
-                                Estimated price: {item.estimatedPrice}
+                                Estimated price: {item.estimatedPrice.price}
                             </p>
                         </div>
 

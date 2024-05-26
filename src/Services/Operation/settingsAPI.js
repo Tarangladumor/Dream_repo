@@ -3,6 +3,10 @@ import { settings } from "../apis";
 import { apiConnector } from "../apiconnector";
 import { setUser} from "../../Slices/profileSlice";
 import { logout } from "./authAPI";
+import axios from "axios";
+
+
+const BASE_URL = "http://localhost:4000/api/v1"
 
 const {
     UPDATE_DISPLAY_PICTURE_API,UPDATE_PROFILE_API,CHANGE_PASSWORD_API,DELETE_PROFILE_API,UPDATE_VENDOR_DETAILS_API
@@ -103,19 +107,27 @@ export function updateVendorDetais(token,formData) {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...")
         try{
-            const response = await apiConnector("PUT",UPDATE_VENDOR_DETAILS_API,formData,{
-                "Content-Type" : "multipart/form-data",
-                Authorization: `Bearer ${token}` 
-            })
-            console.log("UPDATE_VENDOR_DETAILS_API API RESPONSE............",
-            response)
+            // const response = await apiConnector("PUT",UPDATE_VENDOR_DETAILS_API,formData,{
+            //     "Content-Type" : "multipart/form-data",
+            //     Authorization: `Bearer ${token}` 
+            // })
+            
+            const res = await axios({
+                method: 'put',
+                url: BASE_URL + '/vendor/updatevendordetials',
+                data:{formData},
+                headers: { authorization: `Bearer ${token}` },
+            });
 
-            if(!response.data.success) {
-                throw new Error(response.data.message)
+            console.log("UPDATE_VENDOR_DETAILS_API API RESPONSE............",
+            res)
+
+            if(!res.data.success) {
+                throw new Error(res.data.message)
             }
             toast.success("Vendor Detials updated successfully")
             // console.log(response.data.data)
-            dispatch(setUser(response.data.data))
+            dispatch(setUser(res.data.data))
             // console.log(response.data.data)
         } catch(error) {
             console.log("UPDATE_VENDOR_DETAILS_API API ERROR............", error)
