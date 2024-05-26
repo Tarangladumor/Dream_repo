@@ -25,10 +25,13 @@ export const product = {
     UPDATE_PRODUCT_API: BASE_URL +"/individual/updateproduct",
     DELETE_PRODUCT_API: BASE_URL + "/individual/deleteproduct",
     GET_ALL_CATEGORY_API: BASE_URL + "/individual/getallcategory",
-    GET_ALL_BRAND_API: BASE_URL + "/individual/getallbrand"
+    GET_ALL_BRAND_API: BASE_URL + "/individual/getallbrand",
+    GET_ALL_MY_PRODUCTS: BASE_URL + "/individual/getallproductsofuser",
+    GET_ALL_INTERESTED_SHOP: BASE_URL + "/individual/allinterestedshopekeepers"
 }
 
 export const vendor = {
     GET_ALL_VENDOR: BASE_URL + "/individual/getshopbycity",
-    GET_ALL_PRODUCTS : BASE_URL + "/vendor/getallproducts"
+    GET_ALL_PRODUCTS : BASE_URL + "/vendor/getallproducts",
+    ADD_PRICE : BASE_URL + "/vendor/addprice",
 }

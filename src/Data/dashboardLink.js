@@ -36,7 +36,7 @@ export const individualLinks = [
     {
         id:1,
         name:"My Products",
-        path:"/dashboard/my-products",
+        path:"/dashboard/My-products",
         icon : <FaBookmark />
     },
     {
