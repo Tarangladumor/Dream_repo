@@ -124,7 +124,8 @@ const InterestedProduct = () => {
                                         <p className=' font-roboto text-[16px] text-[#00000099]'>{prices.max}</p>
                                 </div>
                                 <div className=' text-[#F19A3E] p-3 space-y-3 mr-10'>
-                                    <p onClick={handleLike} className='flex space-x-2'>{
+                                <p onClick={handleLike} className='flex space-x-2'>
+                                    {
                                         !isLike ? <FaRegHeart className=' text-red-600'/> : <FaHeart className='text-red-600 '/>
                                     }
                                     <span className='-mt-1 text-black'>{card.estimatedPrice.length}</span></p>
@@ -143,6 +144,9 @@ const InterestedProduct = () => {
             </div>
 
         </div>
+        {
+        showShopkeeperDetails && <ShopDetailModel showShopkeeperDetails={showShopkeeperDetails} setShowShopkeeperDetails={setShowShopkeeperDetails}/>
+    }
         </div>
   )
 }

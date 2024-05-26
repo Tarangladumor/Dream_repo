@@ -2,7 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { IoClose } from "react-icons/io5";
 
+<<<<<<< HEAD
 const ShopDetailModel = ({setShowmodal,card}) => {
+=======
+const ShopDetailModel = ({showShopkeeperDetails,setShowShopkeeperDetails}) => {
+>>>>>>> fc434ab6a9a9592ba0a50bfe1dd5b39062b114eb
     const details=[
         {
             Shopkeeper_name:"abc",
@@ -21,7 +25,7 @@ const ShopDetailModel = ({setShowmodal,card}) => {
     console.log("card.............",);
   return (
    
-        <div className=' w-[100vw] h-[100vh] z-[1000] flex justify-center items-center fixed inset-0 bg-[white] bg-opacity-10 backdrop-blur-sm'>
+<div className=' w-[100vw] h-[100vh] z-[1000] flex justify-center items-center fixed inset-0 bg-[white] bg-opacity-10 backdrop-blur-sm'>
       <div className='text-white bg-[#292D2A] p-10 font-roboto rounded-2xl'>
       
 
@@ -55,7 +59,6 @@ const ShopDetailModel = ({setShowmodal,card}) => {
        
       </div>
     </div>
-   
   )
 }
 
