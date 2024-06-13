@@ -1,14 +1,18 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiconnector"
-import { product } from "../apis";
+import { product, vendor } from "../apis";
 import { setLoading } from "../../Slices/authSlice"
 import axios from "axios";
 
 const BASE_URL = "http://localhost:4000/api/v1"
 
 const { ADD_PRODUCT_API, UPDATE_PRODUCT_API, DELETE_PRODUCT_API, GET_ALL_BRAND_API, GET_ALL_CATEGORY_API,
-    GET_ALL_MY_PRODUCTS, ADD_PRICE , GET_ALL_INTERESTED_SHOP
+    GET_ALL_MY_PRODUCTS, ADD_PRICE, GET_ALL_INTERESTED_SHOP
 } = product
+
+const {
+    GET_ALL_INTRESTED_PRODUCTS
+} = vendor
 
 
 
@@ -169,38 +173,38 @@ export const getAllProductsOfUser = async (token) => {
 //     toast.dismiss(toastId);
 //     return result
 // }
- // Ensure this path is correct
+// Ensure this path is correct
 
-export const addPrice = async (data,token,navigate) => {
-console.log("DATa..........DAta..............",data)
-  const toastId = toast.loading("Loading...");
-  let result = null;
-  try {
-    // const res = await apiConnector("POST", "/dashboard/add-price", data, {
-    //   Authorization: `Bearer ${token}`
-    // });
+export const addPrice = async (data, token, navigate) => {
+    console.log("DATa..........DAta..............", data)
+    const toastId = toast.loading("Loading...");
+    let result = null;
+    try {
+        // const res = await apiConnector("POST", "/dashboard/add-price", data, {
+        //   Authorization: `Bearer ${token}`
+        // });
 
-    const res = await axios.post("http://localhost:4000/api/v1/vendor/addprice", data,
-       {headers: {Authorization: `Bearer ${token}`}}
-    )
+        const res = await axios.post("http://localhost:4000/api/v1/vendor/addprice", data,
+            { headers: { Authorization: `Bearer ${token}` } }
+        )
 
-    console.log("ADD_PRICE............", res);
+        console.log("ADD_PRICE............", res);
 
-    // if (!res?.data?.success) {
-    //   throw new Error("Could not add Interest");
-    // }
+        // if (!res?.data?.success) {
+        //   throw new Error("Could not add Interest");
+        // }
 
-    result = res?.data?.data;
-    navigate("/dashboard/intrested-shopkeeper-products")
-  } catch (error) {
-    console.log("ADD_PRICE.........", error);
-    toast.error(error.message);
-  }
-  toast.dismiss(toastId);
-  return result;
+        result = res?.data?.data;
+        navigate("/dashboard/intrested-shopkeeper-products")
+    } catch (error) {
+        console.log("ADD_PRICE.........", error);
+        toast.error(error.message);
+    }
+    toast.dismiss(toastId);
+    return result;
 };
 
-export const InterestedProductOfIndividual = async(token) => {
+export const InterestedProductOfIndividual = async (token) => {
     let result = [];
     const toastId = toast.loading("Loading...");
     try {
@@ -219,17 +223,17 @@ export const InterestedProductOfIndividual = async(token) => {
         toast.success("Interested Products get successfully");
 
         result = res?.data?.data?.products;
-    } catch(error) {
-        console.log("allinterestedproductsofuser....................",error);
+    } catch (error) {
+        console.log("allinterestedproductsofuser....................", error);
         toast.error(error.message)
     }
     toast.dismiss(toastId);
     return result
 }
 
-export const getAllInterestedVendors = async(token,productId) => {
+export const getAllInterestedVendors = async (token, productId) => {
     let result = [];
-    console.log("PRODUCT ID",productId[0]);
+    console.log("PRODUCT ID", productId[0]);
     // const id = JSON.stringify(productId);
     // console.log("ID,......................",id)
     const toastId = toast.loading("Loading...");
@@ -238,7 +242,7 @@ export const getAllInterestedVendors = async(token,productId) => {
         const res = await axios({
             method: 'get',
             url: BASE_URL + `/individual/allinterestedshopekeepers/${productId}`,
-            data:{productId},
+            data: { productId },
             headers: { authorization: `Bearer ${token}` },
         });
 
@@ -251,9 +255,42 @@ export const getAllInterestedVendors = async(token,productId) => {
         toast.success("Interested Products get successfully");
 
         result = res?.data?.data?.estimatedPrice;
-        console.log("RESULT..........",result);
+        console.log("RESULT..........", result);
     } catch (error) {
-        console.log("allinterestedshopekeepers....................",error);
+        console.log("allinterestedshopekeepers....................", error);
+        toast.error(error.message)
+    }
+    toast.dismiss(toastId);
+    return result
+}
+
+export const getAllInterestedProductsOfShopkeeper = async (token) => {
+    let result = [];
+    const toastId = toast.loading("Loading...");
+    try {
+
+        // const res = await apiConnector("GET", GET_ALL_INTRESTED_PRODUCTS,
+        //     { authorization: `Bearer ${token}` }
+        // );
+
+        const res = await axios({
+            method: 'get',
+            url: BASE_URL + `/vendor/interestedproduct`,
+            headers: { authorization: `Bearer ${token}` },
+        });
+
+
+        console.log("GET_ALL_INTRESTED_PRODUCTS RESPONSE.............", res);
+
+        if (!res?.data?.success) {
+            throw new Error("Could not get all interested products of shopkeeper")
+        }
+
+        toast.success("Product fetched successfully")
+
+        result = res?.data?.data;
+    } catch (error) {
+        console.log("GET_ALL_INTRESTED_PRODUCTS ERROR...............", error);
         toast.error(error.message)
     }
     toast.dismiss(toastId);

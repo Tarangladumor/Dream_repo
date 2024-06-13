@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { IoAdd } from "react-icons/io5";
 import { RiDeleteBin5Line } from "react-icons/ri";
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export const ShopDetails = () => {
 
+    const {user} = useSelector((state) => state.profile)
+    const {token} = useSelector((state) => state.auth)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
 
     const {
