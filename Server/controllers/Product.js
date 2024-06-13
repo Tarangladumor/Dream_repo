@@ -17,7 +17,6 @@ export const createProduct = async (req, res) => {
 
     const productImage = req.files.productImageUpload;
 
-
     const invoiceImage = req.files.invoiceImageUpload;
     // const invoiceImage = req.files.invoiceImage;
 
@@ -51,7 +50,6 @@ export const createProduct = async (req, res) => {
     const productImageUpload = await uploadImageCloudinary(productImage, process.env.FOLDER_NAME);
 
     const invoiceImageUpload = await uploadImageCloudinary(invoiceImage, process.env.FOLDER_NAME);
-
 
     const newProduct = await Product.create({
       productName,

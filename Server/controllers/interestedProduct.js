@@ -24,6 +24,8 @@ export const addPrice = async(req,res) => {
             return respond(res,"Please enter your estimeted price",400,false)
         }
 
+        
+
         const addInterestedProduct = await Product.findOneAndUpdate({_id:productId},{
             $push:{
                 estimatedPrice:{userId,price}
@@ -47,26 +49,17 @@ export const addPrice = async(req,res) => {
 
 export const getAllInterestedShopkeepers = async(req,res) => {
     try{
-        const {productId} = req.body;
+        const {id} = req.params;
 
         if(!id) {
             return respond(res,"please provide the product",400,false)
         }
 
         console.log("egg",product)
-        if(!productId) {
-            return respond(res,"please provide the product",400,false)
-        }
-
-        const product = await Product.findById(productId).populate({
-            path:"estimatedPrice.userId",
-            select: "firstName email address"
-        }).populate({
-            path:"estimatedPrice.price"
-        }).exec();
 
         return respond(res,"fetch all the shopkeepers who are interested in one product",200,true,product)
     } catch(error) {
+        console.log(error.message)
         return respond(res,"error in geting all intrested shopkeepers",500,false)
     }
 }
@@ -127,7 +120,6 @@ export const deletePrice = async(req, res)=>{
 
 export const allInterestedProductsOfUser = async(req,res) =>{
     try{
-        return respond(res,"fetching all the products which interested by other shopkeeperes done",200,true)
     } catch(error) {
         console.log(error);
         return respond(res,"something went wrong ahile fetching the all products which interested by shopkeeperes",500,false)
@@ -135,13 +127,7 @@ export const allInterestedProductsOfUser = async(req,res) =>{
 }
 
 
-export const allOtherShopkeepersPrice = async(req,res) => {
-    try{
-        return respond(res,"fetching the price of other shopkeeperes done",200,true)
-    }catch(error) {
-        return respond(res,"something went wrong ahile fetching the price of other shopkeeperes",500,false)
     }
-}
+};
 
 
-     

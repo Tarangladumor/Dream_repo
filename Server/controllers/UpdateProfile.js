@@ -129,7 +129,7 @@ export const changePassword = async (req,res) => {
         await Vendor.findByIdAndDelete({_id: userDetails.vendorDetails});
       }
 
-      await Profile.findByIdAndDelete({_id:userDetails.profile})
+      await Profile.findByIdAndDelete({_id:userDetails.profile._id})
   
       await User.findByIdAndDelete({_id: id})
   

@@ -28,8 +28,6 @@ const productSchema = new mongoose.Schema({
     productImage: {
         required: true,
         type: String,
-    }
-    ,
     },
     invoiceImage: {
         type: String,
