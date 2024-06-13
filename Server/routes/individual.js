@@ -14,9 +14,10 @@ router.post("/createproduct",auth,isIndividual,createProduct)
 router.put("/updateproduct",auth,isIndividual,updateProduct) //pending
 router.delete("/deleteproduct",auth,isIndividual,deleteProduct)
 router.get("/getallproductsofuser",auth,isIndividual,getAllProductsOfUser)
-router.get("/allinterestedshopekeepers",auth,isIndividual,getAllInterestedShopkeepers)
+router.get("/allinterestedshopekeepers/:id",auth,isIndividual,getAllInterestedShopkeepers)
 router.get("/allinterestedproductsofuser",auth,isIndividual,allInterestedProductsOfUser)
 router.get("/getallcategory",auth,isIndividual,getAllCategory)
 router.get("/getallbrand",auth,isIndividual,getAllBrand)
+
 
 export default router;
