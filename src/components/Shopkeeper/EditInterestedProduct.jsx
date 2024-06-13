@@ -48,7 +48,7 @@ export const EditInterestedProduct = () => {
                 {
                     product.map((item,index)=>(
 
-                        <div key={index} className='flex flex-row shadow-lg rounded-md bg-white gap-[50px] justify-around w-[50%] px-8 py-10'>
+                        <div key={index} className='flex flex-row shadow-lg rounded-md bg-white gap-[50px] justify-between w-[80%] px-8 py-10'>
 
                             <div className='flex flex-col'>
                   

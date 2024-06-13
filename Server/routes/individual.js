@@ -18,6 +18,7 @@ router.get("/allinterestedshopekeepers/:id",auth,isIndividual,getAllInterestedSh
 router.get("/allinterestedproductsofuser",auth,isIndividual,allInterestedProductsOfUser)
 router.get("/getallcategory",auth,isIndividual,getAllCategory)
 router.get("/getallbrand",auth,isIndividual,getAllBrand)
+router.get("/getinterestedshopkeeper")
 
 
 export default router;

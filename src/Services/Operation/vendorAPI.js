@@ -39,9 +39,11 @@ export const getShopbyCity = async(token) => {
 export const getAllProductsByCity = async(token) => {
     let result = [];
     try{
-        const res = await apiConnector("GET", GET_ALL_PRODUCTS, {
-            Authorization: `Bearer ${token}`
-        })
+        const res = await axios({
+            method: 'get',
+            url: BASE_URL + '/vendor/getallproducts',
+            headers: { authorization: `Bearer ${token}` },
+        });
         console.log("GET_ALL_PRODUCTS..........",res);
 
         if (!res?.data?.success) {

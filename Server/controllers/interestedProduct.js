@@ -51,13 +51,9 @@ export const getAllInterestedShopkeepers = async(req,res) => {
     try{
         const {id} = req.params;
 
-        console.log("ioqfhoq", req.params)
-
         if(!id) {
             return respond(res,"please provide the product",400,false)
         }
-
-        const product = await Product.findById({_id:id});
 
         console.log("egg",product)
 
@@ -124,80 +120,14 @@ export const deletePrice = async(req, res)=>{
 
 export const allInterestedProductsOfUser = async(req,res) =>{
     try{
-        const userId = req.user.id;
-
-        // Query to find products with at least one estimate price by the logged-in user
-        const products = await Product.find({
-            'estimatedPrice.userId': userId,
-        });
-
-        return respond(res,"fetching all the products which interested by other shopkeeperes done",200,true,products)
     } catch(error) {
+        console.log(error);
         return respond(res,"something went wrong ahile fetching the all products which interested by shopkeeperes",500,false)
     }
 }
 
-// export const allOtherShopkeepersPrice = async(req,res) => {
-//     try{
-//         const {productId} = req.body;
 
-//         const {userId} = req.user.id
-
-//         const data = await Product.find(productId).populate("estimatedPrice")
-//         return respond(res,"fetching the price of other shopkeeperes done",200,true)
-//     }catch(error) {
-//         return respond(res,"something went wrong ahile fetching the price of other shopkeeperes",500,false)
-//     }
-// }
-
-export const allOtherShopkeepersPrice = async (req, res) => {
-    try {
-        const { productId } = req.body;
-        const userId = req.user._id; // Assuming req.user._id contains the logged-in user's ID
-
-        // Find the product and populate the estimatedPrice.userId field
-        const product = await Product.findById(productId)
-            .populate({
-                path:"estimatedPrice",
-                match:{userId:userId}
-            })
-
-        if (!product) {
-            return res.status(404).json({
-                message: "price not found",
-                success: false,
-            });
-        }
-
-        // const filteredData = data.filter(product => product.individual !== null);
-
-        const filteredData = product.filter(product=> product.estimatedPrice !== null);
-
-        // Separate the logged-in vendor's price from other shopkeepers' prices
-        // const otherShopkeepersPrices = product.estimatedPrice.filter(
-        //     price => price.userId._id.toString() !== userId.toString()
-        // );
-
-        // const loggedInVendorPrice = product.estimatedPrice.find(
-        //     price => price.userId._id.toString() === userId.toString()
-        // );
-
-        return res.status(200).json({
-            message: "Fetching the price of other shopkeepers done",
-            success: true,
-            data: {
-                // otherShopkeepersPrices,
-                // loggedInVendorPrice,
-                filteredData
-            },
-        });
-    } catch (error) {
-        console.error('Error:', error);
-        return res.status(500).json({
-            message: "Something went wrong while fetching the price of other shopkeepers",
-            success: false,
-        });
     }
 };
 
-     
+

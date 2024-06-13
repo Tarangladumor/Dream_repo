@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { updateDisplayImage } from "../../Services/Operation/settingsAPI";
 import DeleteProfile from "./DeleteProfile";
+import { ShopDetails } from "./ShopDetails";
 
 const Settings = () => {
   const { token } = useSelector((state) => state.auth);
@@ -143,8 +144,16 @@ const Settings = () => {
 
               <hr className=" border-t-2 border-black mt-10" />
 
+              {
+                user.accountType === "Vendor" && (
+                  <div>
+                    <ShopDetails/>
+                  </div>
+                )
+              }
+
               <div>
-                <DeleteProfile/>
+                <DeleteProfile />
               </div>
 
             </div>

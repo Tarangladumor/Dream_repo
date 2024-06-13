@@ -2,6 +2,7 @@ import React from 'react'
 import { TbWorld } from "react-icons/tb";
 import { RiRotateLockFill } from "react-icons/ri";
 import BULB from '../../assets/bulb_image.png'
+import { Link } from 'react-router-dom';
 
 function Why_sell() {
     return (
@@ -56,7 +57,7 @@ function Why_sell() {
                         <p className=' text-2xl font-semibold text-[#28735A] max-w-[375px] text-center font-poppins'>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,</p>
 
                         <button className='bg-[#4C9E93] text-[28px] py-3 px-12 font-medium rounded-3xl text-white w-fit hover:scale-105 transition-all duration-200 font-inter'>
-                            Try Yourself
+                            <Link to="/signup">Try Yourself</Link>
                         </button>
                     </div>
 

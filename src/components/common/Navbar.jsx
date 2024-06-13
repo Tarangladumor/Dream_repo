@@ -26,13 +26,13 @@ const Navbar = () => {
 
             <li><Link to="/">Home</Link></li>
 
-            {token === null ? (<li><Link to="/about">About</Link></li>) : (user && user.accountType !== "Vendor") ? (<li><Link to="/allvendors">Vendors</Link></li>) : (<li><Link to="/allproducts">All Products</Link></li>)}
+            {token === null ? (<li><Link to="/about">About</Link></li>) : (user && user.accountType !== "Vendor") ? (<li><Link to="/allvendors">Vendors</Link></li>) : (<li><Link to="/dashboard/all-products">All Products</Link></li>)}
 
             {/* <li><Link to="/about">About</Link></li> */}
 
             {/* <li><Link to="/contact">Contact</Link></li> */}
 
-            {token === null ? (<li><Link to="/about">Contact</Link></li>) : (user && user.accountType !== "Vendor") ? (<li><Link to="/addproduct">Add Product</Link></li>) : (<li><Link to="/allproducts">Interested Products</Link></li>)}
+            {token === null ? (<li><Link to="/about">Contact</Link></li>) : (user && user.accountType !== "Vendor") ? (<li><Link to="/dashboard/add-product">Add Product</Link></li>) : (<li><Link to="/allproducts">Interested Products</Link></li>)}
           </ul>
         </nav>
 

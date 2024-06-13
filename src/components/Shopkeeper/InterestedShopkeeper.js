@@ -1,9 +1,37 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+import { getAllInterestedVendors } from '../../Services/Operation/productAPI';
+import ShopDetailModel from './ShopDetailModel';
 
 const InterestedShopkeeper = () => {
     const location = useLocation();
+
+    const productId = location.pathname.split("/").slice(-1);
+    const{token} = useSelector((state) => state.auth);
+
+    const [showmodal,setShowmodal] = useState(false);
+
+    const[selectedShopkeeper,setSelectedShopKeeper] = useState(null);
+
+    const[shopkeepers,setShopkeepers] = useState([]);
+
+    useEffect(() => {
+        const getShopKeepers = async() => {
+            const res = await getAllInterestedVendors(token,productId);
+            setShopkeepers(res);
+        }
+
+        getShopKeepers();
+    },[]);
+
+    console.log("SHOPKEEPERS...............",shopkeepers);
+
+    const handleshopkeeper = (card) =>  {
+        setSelectedShopKeeper(card);
+        setShowmodal(true);
+    }
 
     const IntrestedProduct = [
         {
@@ -41,18 +69,18 @@ const InterestedShopkeeper = () => {
             <div className='flex flex-col '>
             <div  className='overflow-y-auto h-[250px] '>
                 {
-                    IntrestedProduct.map((card,index) => (
+                    shopkeepers.map((card,index) => (
                         
                             <div key={index} className=' bg-white rounded-2xl mx-auto max-w-[90%] mb-5 mt-5'>
                             <div className=' flex justify-between font-roboto p-3'>
                                 <div className='p-3 space-y-2 ml-10'>
-                                    <p className='text-[22px] font-roboto'>{card.Shopkeeper_name}</p>
-                                    <p className=' font-roboto text-[16px] text-[#00000099]'>Shop Address: <span>{card.Shop_Address}</span></p>
+                                    <p className='text-[22px] font-roboto'>{card.userId.firstName}</p>
+                                    <p className=' font-roboto text-[16px] text-[#00000099]'>Shop Name: <span>{card.Shop_Address}</span></p>
                                 </div>
                                 <div className=' text-[#F19A3E] p-3 space-y-3 mr-10'>
-                                    <p>Estimated price: <span>{card.Estimated_price}</span></p>
+                                    <p>Estimated price: <span>{card.price}</span></p>
                                     <p className=' underline'>
-                                    <Link to={"/"}>More details</Link>
+                                    <button onClick={() => handleshopkeeper(card)}>More details</button>
                                     </p>
                                     
                                 </div>
@@ -112,6 +140,9 @@ const InterestedShopkeeper = () => {
                 
             
         </div>
+        {
+            showmodal && <ShopDetailModel setShowmodal={setShowmodal} card={selectedShopkeeper}/>
+        }
     </div>
   )
 }

@@ -14,6 +14,13 @@ import AddProduct from './components/Dashboard/Add Product/index'
 import { useDispatch, useSelector } from 'react-redux';
 import { ShopList } from './components/Shopkeeper/ShopList';
 import ProductInfo from './components/Dashboard/Add Product/Product_Information_Form/ProductInfo';
+import IndividualMyProducts from './components/Dashboard/Individual/IndividualMyProducts';
+import { RenderSteps } from './components/Dashboard/Add Product/RenderSteps';
+import { AllProduct } from './components/Dashboard/All_Product/AllProduct';
+import { ProductDescModal } from './components/Dashboard/All_Product/ProductDescModal';
+import InterestedProduct from './components/Shopkeeper/InterestedProduct';
+import InterestedShopkeeper from './components/Shopkeeper/InterestedShopkeeper';
+import { EditInterestedProduct } from './components/Shopkeeper/EditInterestedProduct';
 
 function App() {
 
@@ -45,7 +52,20 @@ function App() {
 
           <Route path='/dashboard/Settings' element={<Settings/>}/>
 
-          <Route path='/dashboard/add-product' element={<ProductInfo/>}/>
+          <Route path='/dashboard/add-product' element={<AddProduct/>}/>
+
+          <Route path='/dashboard/My-products' element={<IndividualMyProducts/>}/>
+
+          <Route path='/dashboard/all-products' element={<AllProduct/>}/>
+
+          <Route path='/dashboard/interested-products' element={<InterestedProduct/>}/>
+
+          <Route path='/dashboard/interested-products/:id' element={<InterestedShopkeeper/>}/>
+
+          <Route path='/dashboard/intrested-shopkeeper-products' element={<EditInterestedProduct/>}/>
+
+          {/* <Route path='/dashboard/all-products/add-price' element={<ProductDescModal/>}/> */}
+
         </Route>
 
       </Routes>
