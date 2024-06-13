@@ -24,8 +24,6 @@ export const addPrice = async(req,res) => {
             return respond(res,"Please enter your estimeted price",400,false)
         }
 
-        
-
         const addInterestedProduct = await Product.findOneAndUpdate({_id:productId},{
             $push:{
                 estimatedPrice:{userId,price}
@@ -51,9 +49,25 @@ export const getAllInterestedShopkeepers = async(req,res) => {
     try{
         const {id} = req.params;
 
+        console.log("ioqfhoq", JSON
+            .stringify(req.params)
+        )
+
         if(!id) {
             return respond(res,"please provide the product",400,false)
         }
+
+        const product = await Product.findById({_id:id}).populate({
+            path: 'estimatedPrice.userId',
+            populate: { path: 'vendorDetails' } // Populate vendorDetails field within user
+        })
+        .populate({
+            path: 'estimatedPrice.price'
+        }).populate({
+            path: 'estimatedPrice.userId',
+            populate: { path: 'profile' } 
+        })
+        .exec();
 
         console.log("egg",product)
 
@@ -120,15 +134,39 @@ export const deletePrice = async(req, res)=>{
 
 export const allInterestedProductsOfUser = async(req,res) =>{
     try{
+
+        const userId = req.user.id;
+
+
+        const data = await User.findById(userId).populate("products").exec();
+
+        console.log(data);
+
+        return respond(res,"fetching all the products which interested by other shopkeeperes done",200,true,data)
     } catch(error) {
         console.log(error);
         return respond(res,"something went wrong ahile fetching the all products which interested by shopkeeperes",500,false)
     }
 }
 
+export const allOtherShopkeepersPrice = async(req,res) => {
+    try{
+        const {productId} = req.body;
+        const userId = req.user.id;
 
+        const product = await Product.find(productId).populate({
+            path:"estimatadPrice",
+            match:{userId:userId}
+        })
+
+        const filteredData = product.filer(product => product.estimatedPrice !== null);
+
+        return respond(res,"fetching the price of other shopkeeperes done",200,true,filteredData)
+    }catch(error) {
+        return respond(res,"something went wrong ahile fetching the price of other shopkeeperes",500,false)
     }
-};
+}
 
-
+// export const getAllShopKeepers = async(req,res) => {
+//     try  {
 

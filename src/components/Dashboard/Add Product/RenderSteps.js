@@ -2,6 +2,7 @@
 import React from 'react'
 import { FaCheck } from "react-icons/fa"
 import { useSelector } from "react-redux"
+import ProductInfo from './Product_Information_Form/ProductInfo'
 
 
 export const RenderSteps = () => {
@@ -17,7 +18,7 @@ export const RenderSteps = () => {
        
       </div>
       
-
+       <ProductInfo/>
       {/* {step === 2 && <ProductImages />}
       {step === 3 &&  <ProductPreview/> } */}
         </>

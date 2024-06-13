@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteAccount } from '../../Services/Operation/settingsAPI';
 
+
 const DeleteProfile = () => {
 
   const {token} = useSelector((state) => state.auth)
