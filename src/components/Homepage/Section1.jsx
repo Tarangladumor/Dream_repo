@@ -15,7 +15,7 @@ const Section1 = () => {
 
                     <div className='flex flex-col gap-2 justify-center max-w-[700px] font-semibold'>
                         <h1 className=' text-5xl font-roboto'>
-                            Transforming <span className=' text-[#277158]'>E-waste</span> into Environmental Imapct
+                            Transforming <span className=' text-[#277158]'>E-waste</span> into Environmental Impact
                         </h1>
 
                         <p className=' text-2xl font-medium max-w-[500px] font-poppins opacity-55'>lorem epsum ut set unde omnis iste nats error ut unde omnis</p>
