@@ -2,22 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { IoAdd } from "react-icons/io5";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { updateVendorDetais } from '../../Services/Operation/settingsAPI';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export const ShopDetails = () => {
 
-    const { token } = useSelector((state) => state.auth);
-    const { user } = useSelector((state) => state.profile);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
-    const [loading, setLoading] = useState(false);
-
-
-    const [selectImages, setSelectImages] = useState([]);
-    const [imgNames, setImgNames] = useState([]);
 
     const {
         register,
